@@ -1,0 +1,24 @@
+// breackpoints
+$telephone: 320px;
+$tablet: 768px;
+$desktop: 1280px;
+
+:root {
+  --accent-main-color: #ff6b08;
+  //orange color//
+  --accent-secondary-color: #ff001b;
+  //notification red color//
+  --text-main-color: #000000;
+  //black color text//
+  --text-additional-color: #545454;
+  //grey color text//
+  --secondary-color: #ffffff;
+  //white color text, main background color//
+  --bg-secondary-color: #545454;
+  //light-grey bg//
+  --bg-modal-color: #818181;
+  //modal window bg//
+
+  //  timing function
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

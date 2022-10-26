@@ -1,0 +1,26 @@
+// button style placeholder. Usage example:
+
+// .button-success {
+//   @extend %button;
+//   background-color: green;
+// }
+
+%button {
+  cursor: pointer;
+  border-style: none;
+  border-radius: 22px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  align-items: center;
+  color: var(--accent-main-color);
+  background: var(--bg-secondary-color);
+  @include customTransition(color, transform);
+  // transition: color 250ms var(--timing-function),
+  //   background-color 250ms var(--timing-function);
+  &:hover,
+  &:focus {
+    color: var(--text-main-color);
+    background: var(--text-main-color);
+  }
+}

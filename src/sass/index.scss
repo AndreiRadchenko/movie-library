@@ -1,2 +1,23 @@
-@import './common';
-@import './example';
+// utils
+@import './utils/variables';
+@import './utils/visually-hiden';
+@import './utils/mixins';
+@import './utils/animate';
+
+// base
+@import './base/common';
+
+// components
+@import './components/buttons';
+
+// layouts
+@import './layouts/index/header';
+@import './layouts/index/gallery';
+@import './layouts/index/pagination';
+@import './layouts/index/footer';
+@import './layouts/library/header';
+@import './layouts/modal-detail';
+@import './layouts/modal-trailer';
+@import './layouts/modal-login';
+@import './layouts/modal-spinner';
+@import './layouts/button-up';
