@@ -1,0 +1,46 @@
+<div class="modal-login__backdrop is-hidden" data-modal-login>
+  <div class="modal-login">
+    <div data-modal-login-close class="modal__cross-frame">
+      <i class="fa-solid fa-xmark"></i>
+      <!-- <i class="fa-brands fa-youtube"></i> -->
+    </div>
+
+    <div id="login">
+      <button class="login-with-google-btn" id="btnSigninWithGoogle">
+        Sign in with Google
+      </button>
+      <p class="hr-lines">OR</p>
+      <form class="modal-login__form">
+        <div class="modal-login__form__group">
+          <input
+            class="modal-login__input"
+            id="txtEmail"
+            type="email"
+            placeholder=" "
+          />
+          <label class="modal-login__label">Email</label>
+        </div>
+        <div class="modal-login__form__group">
+          <input
+            class="modal-login__input"
+            id="txtPassword"
+            type="password"
+            placeholder=" "
+          />
+          <label class="modal-login__label">Password</label>
+        </div>
+        <div id="divLoginError" class="modal-login__form__group">
+          <div id="lblLoginErrorMessage" class="errorlabel">Error message</div>
+        </div>
+        <div class="modal-login__buttons">
+          <button id="btnLogin" type="button" class="modal-login__button">
+            Log in
+          </button>
+          <button id="btnSignup" type="button" class="modal-login__button">
+            Sign up
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

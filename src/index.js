@@ -1,3 +1,7 @@
+import '../node_modules/@fortawesome/fontawesome-free/js/fontawesome';
+import '../node_modules/@fortawesome/fontawesome-free/js/solid';
+import '../node_modules/@fortawesome/fontawesome-free/js/brands';
+
 import './js/index/header';
 import './js/index/gallery';
 import './js/index/pagination';
