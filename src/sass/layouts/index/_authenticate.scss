@@ -1,9 +1,13 @@
 .auth {
   display: flex;
+  position: absolute;
+  bottom: -110px;
+  right: 0;
 }
-.unsigned {
+.auth__unsigned {
 }
-.auth__btn {
+.auth__text {
+  color: var(--secondary-color);
 }
 .auth__login {
   cursor: pointer;
