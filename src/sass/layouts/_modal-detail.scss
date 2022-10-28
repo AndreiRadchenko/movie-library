@@ -1,0 +1,214 @@
+.modal-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-cubic) 400ms;
+  z-index: 5;
+}
+
+.modal-detail.is-open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.modal-detail__backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-detal__container {
+  z-index: 5;
+  display: block;
+  position: relative;
+  overflow-x: auto;
+  top: 2%;
+  margin: auto;
+  background-color: var(--background-color);
+  max-height: 100vh;
+  width: 280px;
+  padding: 48px 20px 41px 20px;
+  border: 1px solid black;
+  @media screen and (min-width: $tablet) {
+    min-width: 704px;
+    height: 552;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 72px 40px 36px;
+  }
+  @media screen and (min-width: $desktop) {
+    min-width: 806px;
+    height: 558;
+    padding: 40px 12px;
+  }
+}
+
+.movie-image {
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+    height: 373.55px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 375px;
+    height: 478px;
+  }
+}
+.movie-data {
+  @media screen and (min-width: $tablet) {
+    width: 264px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 391px;
+  }
+}
+.data__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.25;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+    line-height: 1.16;
+  }
+}
+
+.data__list {
+  margin-bottom: 20px;
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.list__item:nth-child(5) {
+  margin-bottom: 0;
+}
+
+.data__item {
+  min-width: 100px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8c8c8c;
+}
+
+.data__info {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.data__info--upper {
+  text-transform: uppercase;
+}
+
+.data__span--orange {
+  margin-left: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--accent-main-color);
+  border-radius: 5px;
+  color: var(--secondary-color);
+  border-radius: 5px;
+}
+
+.data__span--divider {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #8c8c8c;
+}
+
+.data__about {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.data__about-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.67;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  @media screen and (min-width: $desktop) {
+    justify-content: flex-start;
+  }
+}
+.modal-detail__button {
+  padding: 1px 6px;
+  width: 110px;
+  height: 44px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--main-text-color);
+  cursor: pointer;
+  border: 1px solid var(--text-main-color);
+  transition: all var(--transition-cubic) 250ms;
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-main-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--accent-main-color);
+  }
+  @media screen and (min-width: $tablet) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 136px;
+  }
+}
+.modal-detail__button:first-child {
+  @media screen and (min-width: $desktop) {
+    margin-right: 15px;
+  }
+}
+
+.modal-detail__cross-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 14px;
+  top: 9px;
+  right: 9px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-main-color);
+  cursor: pointer;
+  @include customTransition(color);
+  &:hover {
+    color: var(--accent-main-color);
+  }
+}
