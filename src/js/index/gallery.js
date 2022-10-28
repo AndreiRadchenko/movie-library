@@ -1,19 +1,10 @@
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '9673c8c8f98cb6e489d5cad6b3789836';
-// import axios from 'axios';
+import FetchMoviService from '../moviedb/moviedb';
 
-const POPULAR_URL = `${BASE_URL}/trending/movie/week`;
-const SEARCH_URL = `${BASE_URL}/search/movie`;
-const MOVIE_ID_URL = `${BASE_URL}/movie/`;
+const movieService = new FetchMoviService();
 
-// const filmsArr = getFilmsPopular();
-// console.log(filmsArr);
-
-export function getFilmsPopular(page) {
-  return fetch(`${POPULAR_URL}?api_key=${API_KEY}&page=${page}`).then(respons =>
-    respons.json()
-  );
-}
+movieService.getFilmsPopular().then(resolve => {
+  renderGallery(resolve.results);
+});
 
 export function getFilmsSeached(query, page) {
   return fetch(
@@ -63,6 +54,7 @@ export const renderGallery = galleryArray => {
         genre_ids,
         release_date,
         id,
+        vote_average,
       }) => `<div class="film__card">
         <a class="film__link link" href="" onclick="event.preventDefault()">
           <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" data-id=${id} />
