@@ -6,8 +6,8 @@ const POPULAR_URL = `${BASE_URL}/trending/movie/week`;
 const SEARCH_URL = `${BASE_URL}/search/movie`;
 const MOVIE_ID_URL = `${BASE_URL}/movie/`;
 
-const filmsArr = getFilmsPopular();
-console.log(filmsArr);
+// const filmsArr = getFilmsPopular();
+// console.log(filmsArr);
 
 export function getFilmsPopular(page) {
   return fetch(`${POPULAR_URL}?api_key=${API_KEY}&page=${page}`).then(respons =>
