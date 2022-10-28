@@ -1,0 +1,83 @@
+// .header-library {
+//   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//     url('/src/images/header/mob-bgc-library-1x.jpg');
+
+//   @media screen and (min-device-pixel-ratio: 2),
+//     (-webkit-min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//       url('/src/images/header/mob-bgc-library-2x.jpg');
+//   }
+
+//   @media screen and (min-width: $tablet) {
+//     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//       url('/src/images/header/tab-bgc-library-1x.jpg');
+//     @media screen and (min-width: $tablet) and (min-device-pixel-ratio: 2),
+//       (-webkit-min-device-pixel-ratio: 2),
+//       (min-resolution: 192dpi),
+//       (min-resolution: 2dppx) {
+//       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//         url('/src/images/header/tab-bgc-library-2x.jpg');
+//     }
+//   }
+
+//   @media screen and (min-width: $desktop) {
+//     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//       url('/src/images/header/desk-bgc-library-1x.jpg');
+//     @media screen and (min-width: $desktop) and (min-device-pixel-ratio: 2),
+//       (-webkit-min-device-pixel-ratio: 2),
+//       (min-resolution: 192dpi),
+//       (min-resolution: 2dppx) {
+//       background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+//         url('/src/images/header/desk-bgc-library-2x.jpg');
+//     }
+//   }
+// }
+// .header-library {
+//     background-color: black;
+// }
+// .library {
+//   display: flex;
+//   justify-content: center;
+  
+
+//   margin-top: 50px;
+// }
+
+// .btn {
+//   background-color: transparent;
+//   cursor: pointer;
+// }
+
+// .library__btn {
+//   padding-top: 14px;
+//   padding-bottom: 14px;
+//   width: 130px;
+
+//   border: 1px solid var(--secondary-color);
+//   border-radius: 5px;
+
+//   transition: transform linear 250ms;
+
+//   &:hover {
+//     transform: scale(1.025);
+//   }
+
+//   @media screen and (min-width: $tablet) {
+//     width: 136px;
+//   }
+// }
+
+// .library__btn:last-child {
+//   margin-left: 20px;
+// }
+
+// .library__btn--currenly {
+//   border: 0;
+//   background-color: orange;
+
+//   box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+
+//   transition: background-color linear 250ms, box-shadow linear 250ms, transform linear 250ms;
+// }

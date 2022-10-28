@@ -1,0 +1,184 @@
+// ===================== header =======================
+.header__container {
+  position: relative;
+}
+
+.header {
+  min-height: 230px;
+  padding-top: 46px;
+
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('/src/images/header/mob-bgc-home-1x.jpg');
+
+  @media screen and (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('/src/images/header/mob-bgc-home-2x.jpg');
+  }
+
+  @media screen and (min-width: $tablet) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('/src/images/header/tab-bgc-home-1x.jpg');
+    @media screen and (min-width: $tablet) and (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('/src/images/header/tab-bgc-home-2x.jpg');
+    }
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url('/src/images/header/desk-bgc-home-1x.jpg');
+    @media screen and (min-width: $desktop) and (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+        url('/src/images/header/desk-bgc-home-2x.jpg');
+    }
+  }
+}
+
+
+// ============================= nav ============================
+.btn {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.logo-btn {
+  --animate-duration: 1.25s;
+}
+
+.logo-text {
+  margin-left: 10px;
+
+  color: var(--secondary-color);
+  font-size: 30px;
+  line-height: calc(35 / 30);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.nav__list {
+  display: flex;
+  list-style: none;
+}
+
+.nav__item:last-child {
+  margin-left: 39px;
+}
+
+.nav__btn {
+  color: var(--secondary-color);
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  text-transform: uppercase;
+}
+
+.logo-btn,
+.nav__btn,
+.form__btn {
+  padding: 0;
+  border: 0;
+}
+
+.nav__item {
+  position: relative;
+}
+
+// .nav__btn {
+//   transform: scale(1);
+//   transition: transform linear 250ms;
+// }
+
+.nav__btn::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--accent-secondary-color);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform linear 350ms, opacity linear 250ms;
+}
+
+// .nav__btn:hover::after {
+//   transform: scale(1);
+//   opacity: 0.5;
+// }
+
+.nav__btn--currently::after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.nav__btn--currently:hover::after {
+  opacity: 1;
+}
+
+// =========================== form =========================
+
+.form {
+  margin-top: 40px;
+}
+
+.form__inner {
+  position: relative;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
+}
+
+.form__input {
+  width: 100%;
+
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 0.5px solid var(--secondary-color);
+  outline: 0;
+}
+
+.form__input,
+.form__input::placeholder {
+  padding-bottom: 4px;
+
+  color: var(--secondary-color);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+}
+
+.form__btn {
+  position: absolute;
+  right: 0;
+  height: 100%;
+
+  transition: transform linear 200ms;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}

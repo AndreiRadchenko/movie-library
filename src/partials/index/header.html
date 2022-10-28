@@ -1,0 +1,35 @@
+<header class="header">
+  <div class="container header__container">
+    <nav class="nav">
+      <button class="logo-btn btn">
+        <svg width="24" height="24">
+          <use href="/src/images/header/film.svg"></use>
+        </svg>
+        <span class="logo-text">Filmoteka</span>
+      </button>
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__btn btn nav__btn--currently">Home</button>
+        </li>
+        <li class="nav__item">
+          <button class="nav__btn btn">My library</button>
+        </li>
+      </ul>
+    </nav>
+
+    <form class="form" autocomplete="off">
+      <div class="form__inner">
+        <input 
+            class="form__input" 
+            type="text" 
+            name="searchQuery" 
+            placeholder="Movie search" 
+            />
+        <button 
+            class="form__btn btn" 
+            type="submit" 
+            aria-label="search films">
+            &#128269
+        </button>
+      </div>
+    </form>
