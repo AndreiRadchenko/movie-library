@@ -5,20 +5,13 @@ const refs = {
   modalLogin: document.querySelector('.modal-login'),
 
   btnSigninWithGoogle: document.querySelector('#btnSigninWithGoogle'),
-  btnLogout: document.querySelector('#btnLogout'),
-
-  // representUserName: document.querySelector('#representUserName'),
-  // representUserEmail: document.querySelector('#representUserEmail'),
-  // representUserPic: document.querySelector('#representUserPic'),
+  // btnLogout: document.querySelector('#btnLogout'),
 
   txtEmail: document.querySelector('#txtEmail'),
   txtPassword: document.querySelector('#txtPassword'),
 
   btnLogin: document.querySelector('#btnLogin'),
   btnSignup: document.querySelector('#btnSignup'),
-
-  // divAuthState: document.querySelector('#divAuthState'),
-  // lblAuthState: document.querySelector('#lblAuthState'),
 
   divLoginError: document.querySelector('#divLoginError'),
   lblLoginErrorMessage: document.querySelector('#lblLoginErrorMessage'),

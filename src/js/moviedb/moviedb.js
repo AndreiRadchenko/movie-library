@@ -3,13 +3,15 @@
 //
 // Потрібно реалізувати наступні методи:
 // 1. getFilmsPopular(page=1) --> повертає масив фільмів. Приймає номер сторінки, за замовчуванням 1
-// 2. searchForMovie(movieName, page=1) --> повертає масив фільмів за рядком пошуку
-// 3. getMovieDetail(movieId)
+// 2. getFilmsById(id)
+
+// 3. searchForMovie(movieName, page=1) --> повертає масив фільмів за рядком пошуку
 // 4. getMovieTrailer(moiveId)
 //
 // Клас має містити властивості totalResults, currentPage які будуть оновлюватися при кожному запиті
 //
 //https://api.themoviedb.org/3/trending/movie/day?api_key=9673c8c8f98cb6e489d5cad6b3789836&page=2
+//api.themoviedb.org/3/movie/913290?api_key=9673c8c8f98cb6e489d5cad6b3789836
 
 import axios from 'axios';
 
@@ -45,6 +47,17 @@ export default class FetchMoviService {
       throw new Error(response.status);
     }
     this.total = response.data.total_pages;
+    return response.data;
+  }
+
+  async getFilmsById(id) {
+    const { searchParams, MOVIE_ID_URL, RESPONSE_OK } = this;
+    const response = await axios.get(MOVIE_ID_URL + id, {
+      params: searchParams,
+    });
+    if (response.status !== RESPONSE_OK) {
+      throw new Error(response.status);
+    }
     return response.data;
   }
 

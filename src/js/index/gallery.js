@@ -1,4 +1,5 @@
 import FetchMoviService from '../moviedb/moviedb';
+import { renderModalDetail } from '../modal-detail';
 
 const movieService = new FetchMoviService();
 
@@ -75,6 +76,8 @@ export const renderGallery = galleryArray => {
 
   filmGallery.insertAdjacentHTML('beforeend', result);
 };
+
+filmGallery.addEventListener('click', renderModalDetail);
 
 // const refs = getRefs();
 
