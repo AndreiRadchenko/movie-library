@@ -91,7 +91,7 @@ export const loginEmailPassword = async () => {
 export const monitorAuthState = async () => {
   onAuthStateChanged(auth, user => {
     if (user) {
-      console.log(user);
+      // console.log(user);
       //   showApp();
       showLoginState(user);
       localStorage.setItem('currentUser', user.email);

@@ -15,13 +15,13 @@ function onAuthLoginClick(event) {
 }
 
 function onAuthLogoutClick(event) {
-  console.log('logout');
+  // console.log('logout');
   logout();
 }
 
 export function updateUserRepresentation() {
   const userEmail = localStorage.getItem('currentUser');
-  console.log('userEmail: ', userEmail);
+  // console.log('userEmail: ', userEmail);
   if (!userEmail) {
     refs.authUserEmail.textContent = 'you are not loged in';
     refs.authUnsigned.classList.remove('visually-hidden');
