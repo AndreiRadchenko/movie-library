@@ -6,6 +6,7 @@ const refs = {
 
   btnSigninWithGoogle: document.querySelector('#btnSigninWithGoogle'),
   btnLogout: document.querySelector('#btnLogout'),
+
   // representUserName: document.querySelector('#representUserName'),
   // representUserEmail: document.querySelector('#representUserEmail'),
   // representUserPic: document.querySelector('#representUserPic'),
@@ -21,6 +22,14 @@ const refs = {
 
   divLoginError: document.querySelector('#divLoginError'),
   lblLoginErrorMessage: document.querySelector('#lblLoginErrorMessage'),
+
+  authUnsigned: document.querySelector('.auth__unsigned'),
+  authSigned: document.querySelector('.auth__signed'),
+  authLogin: document.querySelector('#auth__login'),
+  authLogout: document.querySelector('#auth__logout'),
+  authUserEmail: document.querySelector('.auth__user-email'),
+  popup: document.querySelector('.popup'),
+  popuptext: document.querySelector('.popuptext'),
 
   /* =============== references for  ======================== */
 };
