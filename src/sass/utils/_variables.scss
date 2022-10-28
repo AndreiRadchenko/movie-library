@@ -1,6 +1,8 @@
 // breackpoints
 $telephone: 320px;
+$to-tablet: 767px;
 $tablet: 768px;
+$to-desktop: 1279px;
 $desktop: 1280px;
 
 :root {
@@ -20,6 +22,8 @@ $desktop: 1280px;
   //modal window bg//
   --backdrop-modal-color: rgba(0, 0, 0, 0.25);
   //modal window bg//
+  --secondary-background-color: #f7f7f7;
+  //footer bgcolor//
 
   //  timing function
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
