@@ -1,10 +1,8 @@
-import FetchMoviService from '../js/moviedb/moviedb';
-
-const modalMovieService = new FetchMoviService();
+import movieService from '../js/moviedb/moviedb';
 
 export function renderModalDetail({ target }) {
   const id = target.getAttribute('data-id');
-  modalMovieService
+  movieService
     .getFilmsById(id)
     .then(resolve => {
       console.log(resolve);

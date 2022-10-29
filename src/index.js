@@ -15,3 +15,5 @@ import './js/modal-detail';
 import './js/button-up';
 import './js/modal-spinner';
 import './js/modal-trailer';
+
+import './js/moviedb/moviedb';

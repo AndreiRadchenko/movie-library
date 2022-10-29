@@ -1,7 +1,7 @@
-import FetchMoviService from '../moviedb/moviedb';
+import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 
-const movieService = new FetchMoviService();
+// const movieService = new FetchMoviService();
 
 movieService.getFilmsPopular().then(resolve => {
   renderGallery(resolve.results);

@@ -15,7 +15,7 @@
 
 import axios from 'axios';
 
-export default class FetchMoviService {
+class FetchMoviService {
   constructor() {
     // this.searchQuery = '';
     this.page = 1;
@@ -102,3 +102,5 @@ export default class FetchMoviService {
     this.searchQuery = newQuery;
   }
 }
+
+export default movieService = new FetchMoviService();
