@@ -25,6 +25,9 @@ const refs = {
   popuptext: document.querySelector('.popuptext'),
 
   /* =============== references for  ======================== */
+
+  // wachedBtn: document.querySelector('.js-btn-watched')
+  // queueBtn: document.querySelector('.js-btn-queue')
 };
 
 export default refs;

@@ -32,7 +32,7 @@ export const Gallery = galleryArray => {
         <a class="film__link link" href="">
           <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" />
           <div class="film__info">
-           <h3 class="film__title">${original_title}</h3>
+          <h3 class="film__title">${original_title}</h3>
           <div class="film__details">
           <div class="film__genre">${genre_ids}</div>
           <div class="ilm__year">${release_date.substr(0, 4)}</div>
