@@ -1,29 +1,29 @@
-.modal-detail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+// .modal-detail {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-cubic) 400ms;
-  z-index: 5;
-}
+//   opacity: 0;
+//   pointer-events: none;
+//   transition: opacity var(--transition-cubic) 400ms;
+//   z-index: 5;
+// }
 
-.modal-detail.is-open {
-  opacity: 1;
-  pointer-events: initial;
-}
+// .modal-detail.is-open {
+//   opacity: 1;
+//   pointer-events: initial;
+// }
 
-.modal-detail__backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-}
+// .modal-detail__backdrop {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background-color: rgba(0, 0, 0, 0.7);
+// }
 
 .modal-detal__container {
   z-index: 5;
