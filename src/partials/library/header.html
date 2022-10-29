@@ -1,1 +1,64 @@
-<include src="../src/partials/index/authenticate.html"></include>
+<header class="header header-library">
+  <div class="container header__container">
+    <nav class="nav">
+      <a class="logo-ref" href="index.html">
+        <svg
+          class="logo__icon"
+          role="img"
+          aria-label="Логотип"
+          width="24"
+          height="24"
+        >
+          <use href="/src/images/header/switch.svg#film"></use>
+        </svg>
+        <span class="logo-text">Filmoteka</span>
+      </a>
+
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a class="nav__btn btn" href="index.html">Home</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__btn btn nav__btn--currently" href="/src/library.html"
+            >MY Library</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="library" id="#library">
+      <button class="library__btn btn js-btn-watched">Watched</button>
+      <button class="library__btn btn js-btn-queue">Queue</button>
+    </div>
+
+    <div class="toolbar">
+      <!-- Разметка переключателя темы -->
+      <div class="theme-switch">
+        <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+          <use href="/src/images/header/switch.svg#sun"></use>
+        </svg>
+
+        <div class="theme-switch__control">
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой"
+          />
+          <label
+            aria-hidden="true"
+            class="theme-switch__track"
+            for="theme-switch-toggle"
+          >
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
+
+        <svg class="theme-switch__icon" aria-label="Иконка луны">
+          <use href="/src/images/header/switch.svg#moon"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
