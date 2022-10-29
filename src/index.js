@@ -9,6 +9,7 @@ import './js/index/pagination';
 import './js/index/footer';
 
 import './js/library/header';
+import './js/library/gallery';
 
 import './js/modal-login';
 import './js/modal-detail';
