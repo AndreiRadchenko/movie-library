@@ -1,0 +1,72 @@
+.auth {
+  display: flex;
+  position: absolute;
+  bottom: -110px;
+  right: 0;
+}
+.auth__unsigned {
+}
+.auth__text {
+  color: var(--secondary-color);
+}
+.auth__login {
+  cursor: pointer;
+}
+.signed {
+}
+.signed__text {
+}
+.auth__logout {
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: var(--accent-main-color);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -200%;
+  left: 50%;
+  margin-left: -50px;
+}
+
+/* Popup arrow */
+.popup .popuptext::before {
+  content: '';
+  position: absolute;
+  top: -28%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--accent-main-color) transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

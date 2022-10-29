@@ -1,0 +1,273 @@
+.modal-login__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background: var(--backdrop-modal-color);
+  overflow-y: scroll;
+
+  @include customTransition(opacity);
+
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding-top: 93px;
+    padding-left: 15px;
+    padding-right: 15px;
+    // overflow-y: scroll;
+  }
+
+  @media screen and (min-width: $tablet) {
+  }
+  @media screen and (min-width: $desktop) {
+  }
+}
+.modal-login {
+  position: relative;
+  padding: 40px 12px;
+  background: var(--bg-modal-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: scale(1);
+  @include customTransition(transform);
+
+  .modal-login__backdrop.is-hidden & {
+    transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 390px) and (max-width: ($tablet - 1px)) {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 40px;
+    width: 360px;
+    height: 480px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+
+    .modal-login__backdrop.is-hidden & {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    @media screen and (max-height: $tablet) {
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0) scale(1);
+
+      .modal-login__backdrop.is-hidden & {
+        transform: translate(-50%, 0) scale(1.1);
+      }
+    }
+  }
+  @media screen and (min-width: $desktop) {
+    // width: 360px;
+    // height: 450px;
+    top: 50%;
+    left: 50%;
+    padding: 40px 36px;
+    transform: translate(-50%, -50%) scale(1);
+    .backdrop.is-hidden & {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+}
+
+.modal__cross-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 14px;
+  top: 9px;
+  right: 9px;
+  width: 14px;
+  height: 14px;
+  // border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-main-color);
+  cursor: pointer;
+  @include customTransition(color);
+  &:hover {
+    color: var(--accent-main-color);
+  }
+}
+
+.login-with-google-btn {
+  cursor: pointer;
+  width: 100%;
+  height: 44px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  padding: 12px 16px 12px 42px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+  margin-bottom: 45px;
+  &:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
+  &:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+}
+
+.hr-lines {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  text-align: center;
+  color: var(--text-additional-color);
+  &:before {
+    content: ' ';
+    height: 1px;
+    width: 40%;
+    background: var(--text-additional-color);
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+  &:after {
+    content: ' ';
+    height: 1px;
+    width: 40%;
+    background: var(--text-additional-color);
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
+}
+
+.modal-login__form {
+  font-family: Helvetica;
+  &__group {
+    position: relative;
+    margin-bottom: 45px;
+  }
+}
+
+.modal-login__input {
+  font-size: 14px;
+  padding: 10px 10px 10px 5px;
+  appearance: none;
+  display: block;
+  color: #636363;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #757575;
+  outline: none;
+  &:placeholder-shown + label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: all 0.2s ease;
+  }
+  /* active */
+  &:focus ~ label,
+  &.used ~ label {
+    font-size: 18px;
+    position: absolute;
+    top: -20px;
+    transform: scale(0.75);
+    left: -2px;
+    color: var(--accent-main-color);
+  }
+}
+
+/* Label */
+
+.modal-login__label {
+  font-size: 18px;
+  position: absolute;
+  top: -20px;
+  transform: scale(0.75);
+  left: -2px;
+  color: var(--accent-main-color);
+}
+
+/* Error Label */
+
+.errorlabel {
+  font-size: 12px;
+  padding: 10px 10px 10px 5px;
+  appearance: none;
+  display: block;
+  // background: #fafafa;
+  color: #ff0000;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  // border-bottom: 1px solid var(--accent-secondary-color);
+}
+
+#divLoginError.modal-login__form__group {
+  margin-bottom: 15px;
+}
+
+/* Button */
+
+.modal-login__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.modal-login__button {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+
+  width: 152px;
+  height: 44px;
+  color: var(--text-main-color);
+  background-color: var(--secondary-color);
+  border: 1px solid #757575;
+  border-radius: 5px;
+
+  @include customTransition(color, background-color, border-color);
+  &:hover,
+  &:focus {
+    color: var(--secondary-color);
+    background-color: var(--accent-main-color);
+    border-color: var(--accent-main-color);
+  }
+}

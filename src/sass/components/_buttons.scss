@@ -2,25 +2,26 @@
 
 // .button-success {
 //   @extend %button;
-//   background-color: green;
 // }
 
 %button {
   cursor: pointer;
-  border-style: none;
-  border-radius: 22px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.29;
-  align-items: center;
-  color: var(--accent-main-color);
-  background: var(--bg-secondary-color);
-  @include customTransition(color, transform);
-  // transition: color 250ms var(--timing-function),
-  //   background-color 250ms var(--timing-function);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+
+  width: 152px;
+  height: 44px;
+  color: var(--text-main-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--text-main-color);
+  border-radius: 5px;
+
+  @include customTransition(color, background-color, border-color);
   &:hover,
   &:focus {
-    color: var(--text-main-color);
-    background: var(--text-main-color);
+    color: var(--secondary-color);
+    background-color: var(--accent-main-color);
+    border-color: var(--accent-main-color);
   }
 }
