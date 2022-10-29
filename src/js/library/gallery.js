@@ -1,23 +1,21 @@
 import { renderModalDetail } from '../modal-detail';
-import refs from "../refs"
+import refs from '../refs';
 // import galleryArray from "../library/array.json"
-
 
 export const filmGalleryLib = document.querySelector('.gallery-library');
 
-
 export const renderGalleryLib = galleryArray => {
-    filmGalleryLib.innerHTML = " ";
-    const result = galleryArray
-        .map(
-        ({
-            poster_path,
-            original_title,
-            genre_ids,
-            release_date,
-            id,
-            vote_average,
-        }) => `<div class="film__card">
+  filmGalleryLib.innerHTML = ' ';
+  const result = galleryArray
+    .map(
+      ({
+        poster_path,
+        original_title,
+        genre_ids,
+        release_date,
+        id,
+        vote_average,
+      }) => `<div class="film__card">
             <a class="film__link link" href="" onclick="event.preventDefault()">
             <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" data-id=${id} />
             <div class="film__info">
@@ -32,32 +30,32 @@ export const renderGalleryLib = galleryArray => {
             </div>
             </a>
         </div>`
-        )
-        .join('');
+    )
+    .join('');
 
-    filmGalleryLib.insertAdjacentHTML('beforeend', result);
+  filmGalleryLib.insertAdjacentHTML('beforeend', result);
 };
 
 getArreyWatched = () => {
-    const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
-    if (arreyWatched) {
-        const arrWatched = JSON.parse(arreyWatched);
-        renderGalleryLib(arrWatched);
-    }
+  const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
+  if (arreyWatched) {
+    const arrWatched = JSON.parse(arreyWatched);
+    renderGalleryLib(arrWatched);
+  }
 };
 
 getArreyQueue = () => {
-    const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
-    if (arreyQueue) {
-        const arrQueue = JSON.parse(arreyQueue);
-        renderGalleryLib(arrQueue);
-    }
+  const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
+  if (arreyQueue) {
+    const arrQueue = JSON.parse(arreyQueue);
+    renderGalleryLib(arrQueue);
+  }
 };
 
-filmGalleryLib.addEventListener('click', renderModalDetail);
+// filmGalleryLib.addEventListener('click', renderModalDetail);
 
-refs.wachedBtn.addEventListener('click', getArreyWatched);
+// refs.wachedBtn.addEventListener('click', getArreyWatched);
 
-refs.queueBtn.addEventListener('click', getArreyQueue);
+// refs.queueBtn.addEventListener('click', getArreyQueue);
 
 // renderGalleryLib (getArreyQueue.results);

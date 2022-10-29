@@ -113,3 +113,5 @@ export const logout = async () => {
   await signOut(auth);
   // localStorage.removeItem('currentUser');
 };
+
+monitorAuthState();

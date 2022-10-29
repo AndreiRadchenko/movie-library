@@ -33,4 +33,4 @@ export function updateUserRepresentation() {
   }
 }
 
-monitorAuthState();
+// monitorAuthState();
