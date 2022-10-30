@@ -42,6 +42,7 @@ class FetchMoviService {
   async getFilmsPopular(page = 1) {
     const { searchParams, POPULAR_URL, RESPONSE_OK } = this;
     searchParams.page = page;
+
     const response = await axios.get(POPULAR_URL, {
       params: searchParams,
     });
@@ -49,6 +50,7 @@ class FetchMoviService {
       throw new Error(response.status);
     }
     this.total = response.data.total_pages;
+
     return response.data;
   }
 
