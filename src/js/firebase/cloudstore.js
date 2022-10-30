@@ -9,24 +9,26 @@ import {
 } from 'firebase/firestore';
 import { openModalLogin } from '../modal-login';
 
-export default class CloudStore {
+class CloudStore {
   constructor() {
     this.currentlyOpenedFilm = null;
+    this.collection = 'Not_Added';
   }
   static Collection = {
     WATCHED: 'Watched',
     QUEUE: 'Queue',
+    NOT_ADDED: 'Not_Added',
   };
 }
 
-export const WATCHED = 'Watched';
-export const QUEUE = 'Queue';
-export let currentlyOpenedFilm;
+const WATCHED = 'Watched';
+const QUEUE = 'Queue';
+let currentlyOpenedFilm;
 
 function searchFilmInLibrary(id) {}
 
 // argument 'collection' contain collection name, WATCHED or QUEUE
-export const addDataToCollection = async collection => {
+const addDataToCollection = async collection => {
   const user = localStorage.getItem('currentUser');
   if (!user) {
     //   console.log('no user loged in');
@@ -38,7 +40,7 @@ export const addDataToCollection = async collection => {
   console.log('film added to watched collection');
 };
 
-export const addDataToCollection2 = async () => {
+const addDataToCollection2 = async () => {
   const user = localStorage.getItem('currentUser');
   if (!user) {
     console.log('no user loged in');
@@ -49,7 +51,7 @@ export const addDataToCollection2 = async () => {
   console.log('film added to queue collection');
 };
 
-export const getUserCollections = async () => {
+const getUserCollections = async () => {
   const user = localStorage.getItem('currentUser');
   if (!user) {
     console.log('no user loged in');
@@ -61,7 +63,7 @@ export const getUserCollections = async () => {
   console.log(films);
 };
 
-export const deleteFilm = async () => {
+const deleteFilm = async () => {
   const filmName = 'new film1';
   const user = localStorage.getItem('currentUser');
   if (!user) {
@@ -77,3 +79,6 @@ export const deleteFilm = async () => {
   await deleteDoc(userDoc);
   console.log('"new film1" deleted');
 };
+
+const cloudeStore = new CloudStore();
+export default cloudeStore;
