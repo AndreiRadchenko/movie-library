@@ -104,4 +104,5 @@ class FetchMoviService {
 }
 
 const movieService = new FetchMoviService();
+
 export default movieService;
