@@ -103,4 +103,5 @@ class FetchMoviService {
   }
 }
 
-export default movieService = new FetchMoviService();
+const movieService = new FetchMoviService();
+export default movieService;
