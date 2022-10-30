@@ -48,6 +48,7 @@ export function signInWithGoogle() {
       //   localStorage.setItem('name', name);
       localStorage.setItem('currentUser', email);
       closeModalLogin();
+      location.reload();
       //   localStorage.setItem('profilePic', profilePic);
 
       //   updateUserRepresentation();
@@ -90,6 +91,7 @@ export async function loginEmailPassword() {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
   } finally {
+    location.reload();
     spinnerStop();
   }
 }
@@ -118,6 +120,7 @@ export async function monitorAuthState() {
 // Log out
 export async function logout() {
   await signOut(auth);
+  location.reload();
   // localStorage.removeItem('currentUser');
 }
 

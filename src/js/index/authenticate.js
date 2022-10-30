@@ -17,7 +17,7 @@ function onAuthLoginClick(event) {
 function onAuthLogoutClick(event) {
   // console.log('logout');
   logout();
-  refs.btnLibraryHome.click();
+  // refs.btnLibraryHome.click();
 }
 
 export function updateUserRepresentation() {

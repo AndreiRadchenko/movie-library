@@ -44,6 +44,11 @@ cloudStorage
 
     refs.wachedBtn.classList.add('library__btn--currenly');
     refs.queueBtn.classList.remove('library__btn--currenly');
+    if (!watchedFilms) {
+      refs.filmGalleryLib.innerHTML =
+        ' <h2>Please login to viewe personal collections</h2>';
+      return;
+    }
     if (watchedFilms.length) {
       renderGalleryLib(watchedFilms);
     } else {
