@@ -24,6 +24,9 @@ const refs = {
   popup: document.querySelector('.popup'),
   popuptext: document.querySelector('.popuptext'),
 
+  // ================= library header ===============================
+  btnLibraryHome: document.querySelector('#btn-library-home'),
+
   /* =============== references for spinner ======================== */
   spinner: document.querySelector('.js-spinner'),
   loadSpinner: document.querySelector('[data-load-spinner]'),
