@@ -2,50 +2,64 @@
   width: 100%;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 60px;
-  margin-bottom: 60px;
   background-color: var(--secondary-color);
 }
 
 .film__card {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 16px;
+  align-items: center;
   background-color: var(--secondary-color);
-  box-shadow: 0px 2px 1px rgba(214, 61, 61, 0.342),
-    0px 1px 1px rgba(115, 3, 3, 0.468), 0px 1px 3px rgba(144, 5, 5, 0.414);
-  position: relative;
-  margin: 15px;
-  max-width: 280px;
-  max-height: 438px;
   border-radius: 5px;
-  flex-basis: calc((100% - 2 * 16px) / 1);
+  width: 320px;
   @media screen and (min-width: $tablet) {
-    min-width: 336px;
-    min-height: 495px;
-    flex-basis: calc((100% - 4 * 16px) / 2);
+    gap: 16px;
+    max-width: 336px;
   }
 
   @media screen and (min-width: $desktop) {
-    min-width: 395px;
-    min-height: 634px;
-    flex-basis: calc((100% - 6 * 16px) / 3);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 8px;
+    max-width: 394px;
   }
 }
-// film__link {
+.film__link {
+  border-radius: 5px;
 
-// }
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 495px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 395px;
+    min-height: 634px;
+  }
+}
+
 .film__img {
   width: 100%;
   height: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .film__info {
   display: flex;
   flex-direction: column;
-  margin-top: 8px;
   text-align: left;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
@@ -65,10 +79,12 @@
 .film__name {
   color: var(--text-main-color);
   text-transform: uppercase;
+  text-decoration: none;
 }
 .film__details {
   display: flex;
   flex-direction: row;
+  padding-top: 5px;
 }
 
 .film__genre {
