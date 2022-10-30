@@ -36,7 +36,8 @@ export const renderGallery = galleryArray => {
     )
     .join('');
 
-  filmGallery.insertAdjacentHTML('beforeend', result);
+  //   filmGallery.insertAdjacentHTML('beforeend', result);
+  filmGallery.innerHTML = result;
 };
 
 filmGallery.addEventListener('click', renderModalDetail);
