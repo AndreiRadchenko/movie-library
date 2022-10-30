@@ -28,7 +28,12 @@ const refs = {
   spinner: document.querySelector('.js-spinner'),
   loadSpinner: document.querySelector('[data-load-spinner]'),
 
+  /* =============== references for modal-team ======================== */
+  spinner: document.querySelector('.js-spinner'),
+
   /* =============== references for  ======================== */
+  modalTeam: document.querySelector('#js-team-modal'),
+  modalTeamGalery: document.querySelector('.team__list-js'),
 
   // wachedBtn: document.querySelector('.js-btn-watched')
   // queueBtn: document.querySelector('.js-btn-queue')
