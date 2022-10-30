@@ -11,7 +11,7 @@ export function renderModalDetail({ target }) {
     .then(filmData => {
       // === call addFilmToCollection() for write to userCollection ===
       //   cloudStorage.currentlyOpenedFilm.filmData = filmData;
-      //   cloudStorage.addFilmToCollection(WATCHED);
+      //   cloudStorage.addFilmToCollection(QUEUE);
       // === call getUserCollections() to obtain userCollection ===
       //   cloudStorage.getUserCollections().then(films => console.log(films));
       // === call searchFilmInLibrary() to check film in userDB

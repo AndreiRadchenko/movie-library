@@ -1,6 +1,8 @@
 import { renderModalDetail } from '../modal-detail';
 import refs from '../refs';
 import galleryArray from '../library/array.json';
+import cloudStorage from '../firebase/cloudstorage';
+const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 export const renderGalleryLib = galleryArray => {
   refs.filmGalleryLib.innerHTML = ' ';
@@ -31,44 +33,57 @@ export const renderGalleryLib = galleryArray => {
     )
     .join('');
 
-    refs.filmGalleryLib.insertAdjacentHTML('beforeend', result);
+  refs.filmGalleryLib.innerHTML = result;
 };
 
-getArreyWatched = () => {
-  // const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
-  const arreyWatched = galleryArray.results;
-  refs.wachedBtn.classList.toggle("library__btn--currenly");
-  refs.queueBtn.classList.remove("library__btn--currenly");
-  if (arreyWatched) {
-    // const arrWatched = JSON.parse(arreyWatched);
-    renderGalleryLib(arreyWatched);
-  } else {
-    refs.filmGalleryLib.innerHTML = ' ';
-  }
-};
+cloudStorage
+  .getUserCollections()
+  .then(films => {
+    watchedFilms = films?.filter(film => film.tag === WATCHED);
+    console.log(watchedFilms);
 
-getArreyQueue = () => {
-  // const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
-  const arreyQueue = galleryArray.results;
-  refs.queueBtn.classList.toggle("library__btn--currenly");
-  refs.wachedBtn.classList.remove("library__btn--currenly");
-  if (arreyQueue) {
-    // const arrQueue = JSON.parse(arreyQueue);
-    renderGalleryLib(arreyQueue);
-  } else {
-    refs.filmGalleryLib.innerHTML = ' ';
-  }
-};
+    refs.wachedBtn.classList.add('library__btn--currenly');
+    refs.queueBtn.classList.remove('library__btn--currenly');
+    if (watchedFilms.length) {
+      renderGalleryLib(watchedFilms);
+    } else {
+      refs.filmGalleryLib.innerHTML =
+        ' <h2>There are no films in "Watched" collection"</h2>';
+    }
+  })
+  .catch(error => console.log(error));
+
+// getArreyWatched = () => {
+//   // const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
+//   const arreyWatched = galleryArray.results;
+//   refs.wachedBtn.classList.toggle('library__btn--currenly');
+//   refs.queueBtn.classList.remove('library__btn--currenly');
+//   if (arreyWatched) {
+//     // const arrWatched = JSON.parse(arreyWatched);
+//     renderGalleryLib(arreyWatched);
+//   } else {
+//     refs.filmGalleryLib.innerHTML = ' ';
+//   }
+// };
+
+// getArreyQueue = () => {
+//   // const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
+//   const arreyQueue = galleryArray.results;
+//   refs.queueBtn.classList.toggle('library__btn--currenly');
+//   refs.wachedBtn.classList.remove('library__btn--currenly');
+//   if (arreyQueue) {
+//     // const arrQueue = JSON.parse(arreyQueue);
+//     renderGalleryLib(arreyQueue);
+//   } else {
+//     refs.filmGalleryLib.innerHTML = ' ';
+//   }
+// };
 
 changeTheme = () => {
-  refs.body.classList.toggle("dark-theme");
-  refs.filmGalleryLib.classList.toggle("dark-theme");
+  refs.body.classList.toggle('dark-theme');
+  refs.filmGalleryLib.classList.toggle('dark-theme');
 };
 
 refs.filmGalleryLib.addEventListener('click', renderModalDetail);
-
-refs.wachedBtn.addEventListener('click', getArreyWatched);
-
-refs.queueBtn.addEventListener('click', getArreyQueue);
 
 refs.themeBtn.addEventListener('input', changeTheme);

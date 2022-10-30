@@ -12,7 +12,7 @@
 
    приклади викликів методів cloudStorage:
 
-      //import cloudStorage from './firebase/cloudstore'; 
+      //import cloudStorage from '../firebase/cloudstorage'; 
       //const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
       // === write to userCollection ===
