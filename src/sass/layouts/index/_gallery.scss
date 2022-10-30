@@ -2,31 +2,42 @@
   width: 100%;
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
   flex-wrap: wrap;
   background-color: var(--secondary-color);
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    padding-top: 59px;
+    padding-bottom: 61px;
+    gap: 32px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
 }
 
 .film__card {
   display: flex;
   flex-wrap: wrap;
-
-  gap: 16px;
   align-items: center;
   background-color: var(--secondary-color);
   border-radius: 5px;
   width: 320px;
   @media screen and (min-width: $tablet) {
-    gap: 16px;
     max-width: 336px;
+    gap: 326px;
   }
 
   @media screen and (min-width: $desktop) {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 8px;
+    gap: 16px;
     max-width: 394px;
+    width: calc((100% - 16px) / 3);
   }
 }
 .film__link {
@@ -45,14 +56,20 @@
     flex-wrap: wrap;
     min-width: 395px;
     min-height: 634px;
+    width: calc((100% - 16px) / 3);
+    justify-content: flex-end;
   }
 }
 
 .film__img {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   margin-bottom: 10px;
   border-radius: 5px;
+  @media screen and (min-width: $desktop) {
+    position: relative;
+    overflow: hidden;
+  }
 }
 
 .film__info {
@@ -103,4 +120,16 @@
   margin-left: 8px;
   padding-left: 6px;
   padding-right: 6px;
+  animation: heartBeat;
+  animation-duration: 10000ms;
+  transform: rotate(250deg);
+}
+.film__link:hover {
+  background-color: transparent;
+  overflow: hidden;
+  transform: scale(1.05);
+  opacity: 1;
+  transition: transform 1500ms;
+  box-shadow: 1px 4px 6px rgba(95, 2, 2, 0.716),
+    0px 4px 4px rgba(79, 3, 3, 0.486), 0px 1px 1px rgba(75, 3, 3, 0.503);
 }

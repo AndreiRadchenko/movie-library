@@ -1,6 +1,7 @@
 import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import genres from '../moviedb/genres';
 
 movieService.getFilmsPopular().then(resolve => {
   renderGallery(resolve.results);
