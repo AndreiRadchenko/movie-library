@@ -18,6 +18,7 @@ import {
 } from '../modal-login';
 import { updateUserRepresentation } from '../index/authenticate';
 import refs from '../refs';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 const UNKNOWN_PIC = 'images/unknown-ico.webp';
 
@@ -58,6 +59,7 @@ export const signInWithGoogle = () => {
 
 // Create new account using email/password
 export const createAccount = async () => {
+  spinnerPlay();
   const email = refs.txtEmail.value;
   const password = refs.txtPassword.value;
   try {
@@ -66,11 +68,14 @@ export const createAccount = async () => {
   } catch (error) {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
+  } finally {
+    spinnerStop();
   }
 };
 
 // Login using email/password
 export const loginEmailPassword = async () => {
+  spinnerPlay();
   const loginEmail = refs.txtEmail.value;
   const loginPassword = refs.txtPassword.value;
 
@@ -84,6 +89,8 @@ export const loginEmailPassword = async () => {
   } catch (error) {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
+  } finally {
+    spinnerStop();
   }
 };
 

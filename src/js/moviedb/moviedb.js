@@ -13,6 +13,7 @@
 //api.themoviedb.org/3/movie/913290?api_key=9673c8c8f98cb6e489d5cad6b3789836
 
 import axios from 'axios';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 class FetchMoviService {
   constructor() {

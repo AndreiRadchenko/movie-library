@@ -24,6 +24,10 @@ const refs = {
   popup: document.querySelector('.popup'),
   popuptext: document.querySelector('.popuptext'),
 
+  /* =============== references for spinner ======================== */
+  spinner: document.querySelector('.js-spinner'),
+  loadSpinner: document.querySelector('[data-load-spinner]'),
+
   /* =============== references for  ======================== */
 
   // wachedBtn: document.querySelector('.js-btn-watched')

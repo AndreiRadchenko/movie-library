@@ -20,10 +20,12 @@ $desktop: 1280px;
   //light-grey bg//
   --bg-modal-color: #ffffff;
   //modal window bg//
-  --backdrop-modal-color: rgba(0, 0, 0, 0.25);
+  --backdrop-modal-color: #00000040;
   //modal window bg//
   --secondary-background-color: #f7f7f7;
   //footer bgcolor//
+  --spinnerBG-color: #242222d7;
+  //spinner bgcolor//
 
   //  timing function
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
