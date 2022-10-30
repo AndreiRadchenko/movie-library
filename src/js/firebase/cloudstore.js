@@ -11,45 +11,70 @@ import { openModalLogin } from '../modal-login';
 
 class CloudStore {
   constructor() {
-    this.currentlyOpenedFilm = null;
-    this.collection = 'Not_Added';
+    this.currentlyOpenedFilm = { filmData: null, tag: 'Not_Added' };
   }
-  static Collection = {
+
+  tags = {
     WATCHED: 'Watched',
     QUEUE: 'Queue',
     NOT_ADDED: 'Not_Added',
   };
+
+  async addDataToCollection(filmData, tag) {
+    const user = localStorage.getItem('currentUser');
+    if (!user) {
+      openModalLogin();
+      return;
+    }
+    const usersCollectionRef = collection(db, user);
+    this.currentlyOpenedFilm.filmData = filmData;
+    this.currentlyOpenedFilm.tag = tag;
+    // console.log(this.currentlyOpenedFilm);
+    console.log(this.prepareFilmToSave(this.currentlyOpenedFilm));
+    await addDoc(
+      usersCollectionRef,
+      // this.currentlyOpenedFilm
+      this.prepareFilmToSave(this.currentlyOpenedFilm)
+    );
+    console.log(`film added to collection ${tag} of user ${user}`);
+  }
+
+  prepareFilmToSave(filmDetail) {
+    const {
+      backdrop_path,
+      id,
+      original_language,
+      original_title,
+      overview,
+      popularity,
+      poster_path,
+      release_date,
+      title,
+      video,
+      vote_average,
+      vote_count,
+    } = filmDetail.filmData;
+    const filmForSave = {
+      backdrop_path,
+      id,
+      original_language,
+      original_title,
+      overview,
+      popularity,
+      poster_path,
+      release_date,
+      title,
+      video,
+      vote_average,
+      vote_count,
+    };
+    filmForSave.genre_ids = filmDetail.filmData.genres.map(e => e.id);
+    filmForSave.tag = filmDetail.tag;
+    return filmForSave;
+  }
 }
 
-const WATCHED = 'Watched';
-const QUEUE = 'Queue';
-let currentlyOpenedFilm;
-
 function searchFilmInLibrary(id) {}
-
-// argument 'collection' contain collection name, WATCHED or QUEUE
-const addDataToCollection = async collection => {
-  const user = localStorage.getItem('currentUser');
-  if (!user) {
-    //   console.log('no user loged in');
-    openModalLogin();
-    return;
-  }
-  const usersCollectionRef = collection(db, user);
-  await addDoc(usersCollectionRef, { name: 'new film', collection });
-  console.log('film added to watched collection');
-};
-
-const addDataToCollection2 = async () => {
-  const user = localStorage.getItem('currentUser');
-  if (!user) {
-    console.log('no user loged in');
-    return;
-  }
-  const usersCollectionRef = collection(db, user);
-  await addDoc(usersCollectionRef, { name: 'new film', collection: 'queue' });
-  console.log('film added to queue collection');
-};
 
 const getUserCollections = async () => {
   const user = localStorage.getItem('currentUser');
