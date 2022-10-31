@@ -1,17 +1,39 @@
 import movieService from '../js/moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 
-const modalDetail = document.querySelector('.modal-detal__container');
+const refs = {
+  body: document.querySelector('body'),
+  showBackdrop: document.querySelector('[data-detail-modal]'),
+  modalDetail: document.querySelector('.modal-detal__container'),
+  closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
+  moviePoster: document.querySelector('.movie-poster'),
+  movieInfo: document.querySelector('.movie-data'),
+};
 
 export function renderModalDetail({ target }) {
   spinnerPlay();
   const id = target.getAttribute('data-id');
+  this.id = '';
   movieService
     .getFilmsById(id)
-    .then(resolve => {
-      console.log(resolve);
-      const markup = modalDetailMarkup;
-      modalDetail.insertAdjacentHTML('beforeend', markup);
+    .then(data => {
+      refs.showBackdrop.classList.remove('is-hidden');
+      const markup = modalDetailMarkup(data);
+      refs.modalDetail.innerHTML = markup;
+      (() => {
+        const refs = {
+          closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
+          modalDetail: document.querySelector('[data-detail-modal]'),
+          moviePoster: document.querySelector('.movie-poster'),
+          movieInfo: document.querySelector('.movie-data'),
+        };
+
+        refs.closeModalBtn.addEventListener('click', toggleModal);
+
+        function toggleModal() {
+          refs.modalDetail.classList.toggle('is-hidden');
+        }
+      })();
     })
     .catch(error => console.log(error))
     .finally(() => {
@@ -30,7 +52,7 @@ const modalDetailMarkup = ({
   genres,
   overview,
 }) => {
-  return `<div class="modal-detail__cross-frame">
+  return ` <div class="modal-detail__cross-frame">
       <i class="fa-solid fa-xmark"></i>
     </div>
   <div class="movie-poster">
@@ -68,7 +90,7 @@ const modalDetailMarkup = ({
             </li>
           </ul>
           <p class="data__about">About</p>
-          <p class="data__about-text">${overview}</p> 
+          <p class="data__about-text">${overview}</p>
   <div class="buttons">
         <button
           type="button"
@@ -89,13 +111,3 @@ const modalDetailMarkup = ({
       </div>
     </div>`;
 };
-
-const modalDetailCloseBtn = document.querySelector(
-  '.modal-detail__cross-frame'
-);
-const modalDetailBackdrop = document.querySelector('[data-detail-modal]');
-// modalDetailCloseBtn.addEventListener('click', closeModalDetail);
-
-export function closeModalDetail() {
-  modalDetailBackdrop.classList.add('is-hidden');
-}
