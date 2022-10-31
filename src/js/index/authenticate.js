@@ -8,6 +8,24 @@ refs.authLogout.addEventListener('click', onAuthLogoutClick);
 
 function togglePopup() {
   refs.popuptext.classList.toggle('show');
+  if (refs.popuptext.classList.contains('show')) {
+    document.addEventListener('keydown', onPopupKeydown);
+    document.body.addEventListener('click', onBodyClick);
+  }
+}
+
+function onPopupKeydown(event) {
+  if (event.code === 'Escape') {
+    refs.popuptext.classList.remove('show');
+    document.removeEventListener('keydown', onPopupKeydown);
+  }
+}
+
+function onBodyClick(event) {
+  if (!event.target.classList.contains('auth__text')) {
+    refs.popuptext.classList.remove('show');
+    document.body.removeEventListener('click', onBodyClick);
+  }
 }
 
 function onAuthLoginClick(event) {

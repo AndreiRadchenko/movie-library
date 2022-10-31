@@ -4,19 +4,12 @@
   bottom: -110px;
   right: 0;
 }
-.auth__unsigned {
-}
+
 .auth__text {
   color: var(--secondary-color);
 }
 .auth__login {
   cursor: pointer;
-}
-.signed {
-}
-.signed__text {
-}
-.auth__logout {
 }
 
 .popup {
@@ -57,7 +50,7 @@
 /* Toggle this class - hide and show the popup */
 .popup .show {
   visibility: visible;
-  animation: fadeIn 1s;
+  animation: fadeIn 250ms;
 }
 
 /* Add animation (fade in the popup) */
