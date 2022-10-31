@@ -7,6 +7,7 @@
   z-index: 302;
   visibility: visible;
   opacity: 1;
+  overflow-y: scroll;
   transition: opacity 250ms var(--timing-function),
     visibility 250ms var(--timing-function);
   &.is-hidden {
@@ -25,14 +26,15 @@
   display: block;
   margin: auto;
   position: relative;
+  overflow-x: auto;
   background-color: var(--bg-modal-color);
-  height: 100vh;
+  max-height: 100vh;
   max-width: 280px;
   top: 2%;
   padding: 48px 20px 41px 20px;
   @media screen and (min-width: $tablet) {
     min-width: 704px;
-    height: 552px;
+    // height: 552px;
     display: flex;
     justify-content: space-between;
     padding: 40px 72px 40px 36px;
@@ -59,7 +61,7 @@
     height: 373.55px;
   }
   @media screen and (min-width: $desktop) {
-    width: 375px;
+    width: 355px;
     height: 478px;
   }
 }
@@ -215,18 +217,19 @@
 }
 .modal-detail__youtube {
   position: absolute;
-  font-size: 14px;
-  top: 150px;
-  right: 150px;
-  width: 14px;
-  height: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border: none;
-  border-radius: 50%;
-  color: var(--text-main-color);
+  font-size: 85px;
+  top: 45%;
+  left: 50%;
+  color: var(--accent-secondary-color);
+  fill: var(--background-color);
   cursor: pointer;
+  transform: translateX(-50%) translateY(-50%) scale(1);
   @include customTransition(color);
-  &:hover {
-    color: var(--accent-main-color);
+}
+
+.movie-poster:hover {
+  cursor: pointer;
+  & .modal-detail__youtube {
+    transform: translateX(-50%) translateY(-50%) scale(1.15);
   }
 }

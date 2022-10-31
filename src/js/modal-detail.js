@@ -18,6 +18,7 @@ export function renderModalDetail({ target }) {
     .getFilmsById(id)
     .then(data => {
       refs.showBackdrop.classList.remove('is-hidden');
+      document.body.classList.add('modal-open');
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
       (() => {
