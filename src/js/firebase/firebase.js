@@ -16,6 +16,7 @@ import {
   showLoginError,
   closeModalLogin,
 } from '../modal-login';
+
 import { updateUserRepresentation } from '../index/authenticate';
 import refs from '../refs';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
