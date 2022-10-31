@@ -39,8 +39,8 @@ export const renderGalleryLib = galleryArray => {
 cloudStorage
   .getUserCollections()
   .then(films => {
-    watchedFilms = films?.filter(film => film.tag === WATCHED);
-    console.log(watchedFilms);
+    const watchedFilms = films?.filter(film => film.tag === WATCHED);
+    // console.log(watchedFilms);
 
     refs.wachedBtn.classList.add('library__btn--currenly');
     refs.queueBtn.classList.remove('library__btn--currenly');

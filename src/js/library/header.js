@@ -10,7 +10,7 @@ function onWatchedBtnClick() {
   cloudStorage
     .getUserCollections()
     .then(films => {
-      watchedFilms = films?.filter(film => film.tag === WATCHED);
+      const watchedFilms = films?.filter(film => film.tag === WATCHED);
       //   console.log(watchedFilms);
 
       refs.wachedBtn.classList.add('library__btn--currenly');
@@ -29,7 +29,7 @@ function onQueueBtnClick() {
   cloudStorage
     .getUserCollections()
     .then(films => {
-      queueFilms = films?.filter(film => film.tag === QUEUE);
+      const queueFilms = films?.filter(film => film.tag === QUEUE);
       //   console.log(queueFilms);
 
       refs.wachedBtn.classList.remove('library__btn--currenly');
