@@ -24,6 +24,12 @@ export const membersOfteam = [
     socialLink: 'https://github.com/vitaliy197811',
   },
   {
+    name: 'Світлана',
+    position: 'Developer',
+    imageMember: 'https://avatars.githubusercontent.com/u/104780892?v=4',
+    socialLink: 'https://github.com/SvitlanaStadnyk',
+  },
+  {
     name: 'Тетяна',
     position: 'Developer',
     imageMember: 'https://avatars.githubusercontent.com/u/104375923?v=4',
@@ -36,15 +42,9 @@ export const membersOfteam = [
     socialLink: 'https://github.com/OleksiiWhite',
   },
   {
-    name: 'Світлана',
+    name: 'Олександр',
     position: 'Developer',
-    imageMember: 'https://avatars.githubusercontent.com/u/104780892?v=4',
-    socialLink: 'https://github.com/SvitlanaStadnyk',
-  },
-  {
-    name: 'Олексій',
-    position: 'Developer',
-    imageMember: 'https://avatars.githubusercontent.com/u/104505823?v=4',
-    socialLink: 'https://github.com/OleksiiWhite',
+    imageMember: 'https://avatars.githubusercontent.com/u/99279731?v=4',
+    socialLink: 'https://github.com/AlexanderTobert',
   },
 ];
