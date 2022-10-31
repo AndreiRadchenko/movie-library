@@ -7,7 +7,13 @@ function showConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
-  })({ particleCount: 200, spread: 200, zIndex: 2021 });
+  })({
+    particleCount: 1000,
+    spread: 1000,
+    zIndex: 2022,
+    shapes: ['star', 'circle', 'star'],
+    colors: ['#ff6b08', '#ffffff', '#545454', '#ff6b08'],
+  });
 }
 
 function openModalMarkup() {
