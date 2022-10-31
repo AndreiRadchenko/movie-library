@@ -23,12 +23,12 @@
 .modal-detal__container {
   z-index: 80;
   display: block;
-  position: absolute;
+  margin: auto;
+  position: relative;
   background-color: var(--bg-modal-color);
   height: 100vh;
   max-width: 280px;
   top: 2%;
-  left: 4%;
   padding: 48px 20px 41px 20px;
   @media screen and (min-width: $tablet) {
     min-width: 704px;
@@ -36,14 +36,14 @@
     display: flex;
     justify-content: space-between;
     padding: 40px 72px 40px 36px;
-    position: absolute;
-    left: 25px;
+    position: relative;
     top: 108px;
   }
   @media screen and (min-width: $desktop) {
     min-width: 806px;
     height: 558;
     padding: 40px 12px;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1) rotate(0);
@@ -198,6 +198,26 @@
   font-size: 14px;
   top: 9px;
   right: 9px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-main-color);
+  cursor: pointer;
+  @include customTransition(color);
+  &:hover {
+    color: var(--accent-main-color);
+  }
+}
+.movie-poster {
+  position: relative;
+}
+.modal-detail__youtube {
+  position: absolute;
+  font-size: 14px;
+  top: 150px;
+  right: 150px;
   width: 14px;
   height: 14px;
   border: 1px solid rgba(0, 0, 0, 0.1);
