@@ -84,11 +84,11 @@ cloudStorage
 //   }
 // };
 
-changeTheme = () => {
-  refs.body.classList.toggle('dark-theme');
-  refs.filmGalleryLib.classList.toggle('dark-theme');
-};
+// changeTheme = () => {
+//   refs.body.classList.toggle('dark-theme');
+//   refs.filmGalleryLib.classList.toggle('dark-theme');
+// };
 
 refs.filmGalleryLib.addEventListener('click', renderModalDetail);
 
-refs.themeBtn.addEventListener('input', changeTheme);
+// refs.themeBtn.addEventListener('input', changeTheme);
