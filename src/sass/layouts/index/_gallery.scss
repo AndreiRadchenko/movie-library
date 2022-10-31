@@ -103,6 +103,7 @@
   display: flex;
   flex-direction: row;
   padding-top: 5px;
+  padding-bottom: 10px;
 }
 
 .film__genre {
@@ -113,18 +114,9 @@
 .film__year {
   color: var(--accent-main-color);
   padding-left: 2px;
+  margin-right: 15px;
 }
-.film__rating {
-  color: var(--secondary-color);
-  background-color: var(--accent-main-color);
-  border-radius: 5px;
-  margin-left: 8px;
-  padding-left: 6px;
-  padding-right: 6px;
-  animation: heartBeat;
-  animation-duration: 10000ms;
-  transform: rotate(250deg);
-}
+
 .film__link:hover {
   background-color: transparent;
   overflow: hidden;
@@ -133,4 +125,83 @@
   transition: transform 500ms;
   box-shadow: 1px 4px 6px rgba(95, 2, 2, 0.716),
     0px 4px 4px rgba(79, 3, 3, 0.486), 0px 1px 1px rgba(75, 3, 3, 0.503);
+}
+.film__rating {
+  @media screen and (min-width: $telephone) {
+    color: var(--accent-main-color);
+
+    // background-color: var(--accent-main-color);
+    // border-radius: 50px;
+    // padding: 5px;
+  }
+  @media screen and (min-width: $tablet) {
+    color: var(--secondary-color);
+    margin-left: 15px;
+    padding-left: 16px;
+    padding-right: 6px;
+    padding-top: 8px;
+    animation: hartbeat;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    position: relative;
+    width: 55px;
+    height: 20px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: $desktop) {
+    color: var(--secondary-color);
+    margin-left: 15px;
+    padding-left: 16px;
+    padding-right: 6px;
+    padding-top: 8px;
+    animation: heartBeat;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    position: relative;
+    width: 55px;
+    height: 20px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.film__rating:before,
+.film__rating:after {
+  @media screen and (min-width: $tablet) {
+    position: absolute;
+    content: ' ';
+    z-index: -4;
+    width: 30px;
+    height: 45px;
+    left: 30px;
+    background-color: var(--accent-main-color);
+    border-radius: 100px 100px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  @media screen and (min-width: $desktop) {
+    position: absolute;
+    content: ' ';
+    z-index: -4;
+    width: 30px;
+    height: 45px;
+    left: 30px;
+    background-color: var(--accent-main-color);
+    border-radius: 100px 100px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+}
+.film__rating:after {
+  @media screen and (min-width: $tablet) {
+    left: 0;
+    transform-origin: 100% 100%;
+    transform: rotate(45deg);
+  }
+  @media screen and (min-width: $desktop) {
+    left: 0;
+    transform-origin: 100% 100%;
+    transform: rotate(45deg);
+  }
 }
