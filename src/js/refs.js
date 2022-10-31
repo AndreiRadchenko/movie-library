@@ -28,6 +28,11 @@ const refs = {
   spinner: document.querySelector('.js-spinner'),
   loadSpinner: document.querySelector('[data-load-spinner]'),
 
+  /* =============== references for modal-trailer ======================== */
+  btnModalLoginClose: document.querySelector('[data-modal-login-close]'),
+  modalTrailerBackdrop: document.querySelector('.modal-trailer__backdrop'),
+  modalLogin: document.querySelector('.modal-login'),
+
   /* =============== references for  ======================== */
 
   // wachedBtn: document.querySelector('.js-btn-watched')

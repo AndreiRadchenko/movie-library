@@ -80,6 +80,7 @@ class FetchMoviService {
     if (response.status !== RESPONSE_OK) {
       throw new Error(response.status);
     }
+    this.total = response.data.total_pages;
     return response.data;
   }
 
