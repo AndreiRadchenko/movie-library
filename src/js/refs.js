@@ -29,11 +29,15 @@ const refs = {
   loadSpinner: document.querySelector('[data-load-spinner]'),
 
   /* =============== references for modal-team ======================== */
-  spinner: document.querySelector('.js-spinner'),
-
-  /* =============== references for  ======================== */
   modalTeam: document.querySelector('#js-team-modal'),
   modalTeamGalery: document.querySelector('.team__list-js'),
+  btnModalLoginCloseTeam: document.querySelector(
+    '[data-modal-login-close-team]'
+  ),
+  modalLoginTeam: document.querySelector('.modal-team'),
+  modalLoginBackdropTeam: document.querySelector('.modal-login__backdrop-team'),
+
+  /* =============== references for  ======================== */
 
   // wachedBtn: document.querySelector('.js-btn-watched')
   // queueBtn: document.querySelector('.js-btn-queue')

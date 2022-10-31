@@ -11,6 +11,7 @@ import './js/modal-login';
 import './js/modal-detail';
 import './js/button-up';
 import './js/modal-spinner';
+import './js/modal-team';
 import './js/modal-trailer';
 
 import './js/firebase/firebase';
