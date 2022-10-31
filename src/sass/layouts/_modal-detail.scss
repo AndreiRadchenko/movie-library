@@ -23,19 +23,21 @@
 .modal-detal__container {
   z-index: 80;
   display: block;
-  position: relative;
+  position: absolute;
   background-color: var(--bg-modal-color);
-  max-height: 100vh;
-  width: 280px;
+  height: 100vh;
+  max-width: 280px;
+  top: 2%;
+  left: 4%;
   padding: 48px 20px 41px 20px;
   @media screen and (min-width: $tablet) {
     min-width: 704px;
-    height: 552;
+    height: 552px;
     display: flex;
     justify-content: space-between;
     padding: 40px 72px 40px 36px;
     position: absolute;
-    left: 159px;
+    left: 25px;
     top: 108px;
   }
   @media screen and (min-width: $desktop) {
@@ -48,43 +50,17 @@
   }
 }
 
-// .modal {
-//   max-width: 450px;
-//   max-height: 609px;
-//   background-color: var(--background-clr);
-//   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-//     0px 2px 1px rgba(0, 0, 0, 0.2);
-//   border-radius: 4px;
-//   position: absolute;
-//   left: 15px;
-//   top: 93px;
-//   padding: 40px;
-//   @include tablet {
-//     position: absolute;
-//     left: 159px;
-//     top: 108px;
-//   }
-//   @include desktop {
-//     max-width: 528px;
-//     max-height: 581px;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%) scale(1) rotate(0);
-//     transition: transform 250ms var(--timing-function);
-//   }
-// }
-
 .movie-image {
   display: block;
   border-radius: 5px;
   margin-bottom: 20px;
   @media screen and (min-width: $tablet) {
-    max-width: 264px;
-    max-height: 373.55px;
+    width: 264px;
+    height: 373.55px;
   }
   @media screen and (min-width: $desktop) {
-    max-width: 375px;
-    max-height: 478px;
+    width: 375px;
+    height: 478px;
   }
 }
 .movie-data {
@@ -194,8 +170,7 @@
   color: var(--main-text-color);
   cursor: pointer;
   border: 1px solid var(--text-main-color);
-  transition: all var(--transition-cubic) 250ms;
-
+  @include customTransition(color, background-color, border-color);
   &:hover,
   &:focus {
     background-color: var(--accent-main-color);
