@@ -28,6 +28,7 @@ export function renderModalDetail({ target }) {
           modalDetail: document.querySelector('[data-detail-modal]'),
           moviePoster: document.querySelector('.movie-poster'),
           movieInfo: document.querySelector('.movie-data'),
+          buttonWatched: document.querySelector('.button-watched'),
         };
 
         refs.closeModalBtn.addEventListener('click', toggleModal);
