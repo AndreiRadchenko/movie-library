@@ -31,7 +31,16 @@ const refs = {
   spinner: document.querySelector('.js-spinner'),
   loadSpinner: document.querySelector('[data-load-spinner]'),
 
-  /* =========== ferences for button watched and queue ============= */
+  /* =============== references for modal-team ======================== */
+  modalTeam: document.querySelector('#js-team-modal'),
+  modalTeamGalery: document.querySelector('.team__list-js'),
+  btnModalLoginCloseTeam: document.querySelector(
+    '[data-modal-login-close-team]'
+  ),
+  modalLoginTeam: document.querySelector('.modal-team'),
+  modalLoginBackdropTeam: document.querySelector('.modal-login__backdrop-team'),
+
+  /* =============== references for  ======================== */
 
   wachedBtn: document.querySelector('.js-btn-watched'),
   queueBtn: document.querySelector('.js-btn-queue'),
