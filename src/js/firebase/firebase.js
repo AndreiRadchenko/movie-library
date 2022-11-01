@@ -16,6 +16,7 @@ import {
   showLoginError,
   closeModalLogin,
 } from '../modal-login';
+
 import { updateUserRepresentation } from '../index/authenticate';
 import refs from '../refs';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
@@ -38,7 +39,7 @@ export const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = () => {
+export function signInWithGoogle() {
   signInWithPopup(auth, provider)
     .then(result => {
       const name = result.user.displayName;
@@ -48,6 +49,7 @@ export const signInWithGoogle = () => {
       //   localStorage.setItem('name', name);
       localStorage.setItem('currentUser', email);
       closeModalLogin();
+      location.reload();
       //   localStorage.setItem('profilePic', profilePic);
 
       //   updateUserRepresentation();
@@ -55,10 +57,10 @@ export const signInWithGoogle = () => {
     .catch(error => {
       console.log(error);
     });
-};
+}
 
 // Create new account using email/password
-export const createAccount = async () => {
+export async function createAccount() {
   spinnerPlay();
   const email = refs.txtEmail.value;
   const password = refs.txtPassword.value;
@@ -71,10 +73,10 @@ export const createAccount = async () => {
   } finally {
     spinnerStop();
   }
-};
+}
 
 // Login using email/password
-export const loginEmailPassword = async () => {
+export async function loginEmailPassword() {
   spinnerPlay();
   const loginEmail = refs.txtEmail.value;
   const loginPassword = refs.txtPassword.value;
@@ -90,12 +92,13 @@ export const loginEmailPassword = async () => {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
   } finally {
+    location.reload();
     spinnerStop();
   }
-};
+}
 
 // Monitor auth state
-export const monitorAuthState = async () => {
+export async function monitorAuthState() {
   onAuthStateChanged(auth, user => {
     if (user) {
       // console.log(user);
@@ -113,12 +116,13 @@ export const monitorAuthState = async () => {
       updateUserRepresentation();
     }
   });
-};
+}
 
 // Log out
-export const logout = async () => {
+export async function logout() {
   await signOut(auth);
+  location.reload();
   // localStorage.removeItem('currentUser');
-};
+}
 
 monitorAuthState();

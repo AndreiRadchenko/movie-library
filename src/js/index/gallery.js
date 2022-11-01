@@ -3,9 +3,13 @@ import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { genresArray } from '../moviedb/genres';
 
-movieService.getFilmsPopular().then(resolve => {
-  renderGallery(resolve.results);
-});
+spinnerPlay();
+movieService
+  .getFilmsPopular()
+  .then(resolve => {
+    renderGallery(resolve.results);
+  })
+  .finally(() => spinnerStop());
 
 export const filmGallery = document.querySelector('.gallery');
 export const renderGallery = galleryArray => {
@@ -37,6 +41,7 @@ export const renderGallery = galleryArray => {
     .join('');
 
   //   filmGallery.insertAdjacentHTML('beforeend', result);
+  // filmGallery.insertAdjacentHTML('beforeend', result);
   filmGallery.innerHTML = result;
 };
 

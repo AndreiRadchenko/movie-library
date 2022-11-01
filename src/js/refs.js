@@ -24,14 +24,24 @@ const refs = {
   popup: document.querySelector('.popup'),
   popuptext: document.querySelector('.popuptext'),
 
+  // ================= library header ===============================
+  btnLibraryHome: document.querySelector('#btn-library-home'),
+
   /* =============== references for spinner ======================== */
   spinner: document.querySelector('.js-spinner'),
   loadSpinner: document.querySelector('[data-load-spinner]'),
 
-  /* =============== references for  ======================== */
+  /* =========== ferences for button watched and queue ============= */
 
-  // wachedBtn: document.querySelector('.js-btn-watched')
-  // queueBtn: document.querySelector('.js-btn-queue')
+  wachedBtn: document.querySelector('.js-btn-watched'),
+  queueBtn: document.querySelector('.js-btn-queue'),
+
+  /* ========= ferences for button dark and light theme =========== */
+
+  themeBtn: document.querySelector('#theme-switch-toggle'),
+
+  filmGalleryLib: document.querySelector('.gallery-library'),
+  body: document.querySelector('body'),
 };
 
 export default refs;
