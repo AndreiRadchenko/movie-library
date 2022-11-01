@@ -15,14 +15,14 @@ function onWatchedBtnClick() {
 
       refs.wachedBtn.classList.add('library__btn--currenly');
       refs.queueBtn.classList.remove('library__btn--currenly');
-      if (watchedFilms.length) {
+      if (watchedFilms?.length) {
         renderGalleryLib(watchedFilms);
       } else {
         refs.filmGalleryLib.innerHTML =
           ' <h2>There are no films in "Watched" collection"</h2>';
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => {});
 }
 
 function onQueueBtnClick() {
@@ -34,12 +34,12 @@ function onQueueBtnClick() {
 
       refs.wachedBtn.classList.remove('library__btn--currenly');
       refs.queueBtn.classList.add('library__btn--currenly');
-      if (queueFilms.length) {
+      if (queueFilms?.length) {
         renderGalleryLib(queueFilms);
       } else {
         refs.filmGalleryLib.innerHTML =
           ' <h2>There are no films in "Queue" collection"</h2>';
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => {});
 }

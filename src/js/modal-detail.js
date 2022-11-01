@@ -3,6 +3,8 @@ import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
+import { openModalTrailer, closeModalTrailer } from './modal-trailer';
+
 const ADD = 'add';
 const DELETE = 'delete';
 
@@ -47,6 +49,7 @@ export function renderModalDetail({ target }) {
         refs.closeModalBtn.addEventListener('click', closeModalDetail);
         refs.buttonWatched.addEventListener('click', onButtonWatchedClick);
         refs.buttonQueue.addEventListener('click', onButtonQueueClick);
+        refs.moviePoster.addEventListener('click', openModalTrailer);
       })();
     })
     .catch(error => console.log(error))
@@ -61,6 +64,14 @@ export function renderModalDetail({ target }) {
     });
 }
 
+// function onMoviePosterClick() {
+//   refs.modalTrailerBackdrop.classList.remove('is-hidden');
+// }
+
+// function onModalTrailerCloseBtnClick() {
+//   refs.modalTrailerBackdrop.classList.add('is-hidden');
+// }
+
 function closeModalDetail() {
   refs.modalDetailBackdrop.classList.add('is-hidden');
   document.body.classList.remove('modal-open');
@@ -69,7 +80,6 @@ function closeModalDetail() {
     'click',
     onModalDetailBackdropClick
   );
-  console.log('in close modal-detail');
 }
 
 function onModalDetailKeydown(event) {
@@ -119,10 +129,12 @@ async function onButtonWatchedClick({ target: buttonWatched }) {
   const watchedBtnState = buttonWatched.dataset.action;
   const queueBtnState = buttonQueue.dataset.action;
   if (watchedBtnState === ADD && queueBtnState === ADD) {
-    cloudStorage.addFilmToCollection(WATCHED);
-    buttonWatched.dataset.action = DELETE;
-    buttonWatched.textContent = 'Remove from watched';
-    buttonWatched.classList.add('button-active');
+    try {
+      await cloudStorage.addFilmToCollection(WATCHED);
+      buttonWatched.dataset.action = DELETE;
+      buttonWatched.textContent = 'Remove from watched';
+      buttonWatched.classList.add('button-active');
+    } catch (error) {}
   } else if (watchedBtnState === ADD && queueBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
@@ -152,22 +164,26 @@ async function onButtonQueueClick({ target: buttonQueue }) {
   const watchedBtnState = buttonWatched.dataset.action;
   const queueBtnState = buttonQueue.dataset.action;
   if (queueBtnState === ADD && watchedBtnState === ADD) {
-    cloudStorage.addFilmToCollection(QUEUE);
-    buttonQueue.dataset.action = DELETE;
-    buttonQueue.textContent = 'Remove from queue';
-    buttonQueue.classList.add('button-active');
+    try {
+      await cloudStorage.addFilmToCollection(QUEUE);
+      buttonQueue.dataset.action = DELETE;
+      buttonQueue.textContent = 'Remove from queue';
+      buttonQueue.classList.add('button-active');
+    } catch (error) {}
   } else if (queueBtnState === ADD && watchedBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
     );
-    await cloudStorage.addFilmToCollection(QUEUE);
-    buttonQueue.dataset.action = DELETE;
-    buttonQueue.textContent = 'Remove from queue';
-    buttonQueue.classList.add('button-active');
+    try {
+      await cloudStorage.addFilmToCollection(QUEUE);
+      buttonQueue.dataset.action = DELETE;
+      buttonQueue.textContent = 'Remove from queue';
+      buttonQueue.classList.add('button-active');
 
-    buttonWatched.textContent = 'Add to watched';
-    buttonWatched.dataset.action = ADD;
-    buttonWatched.classList.remove('button-active');
+      buttonWatched.textContent = 'Add to watched';
+      buttonWatched.dataset.action = ADD;
+      buttonWatched.classList.remove('button-active');
+    } catch (error) {}
   } else if (queueBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
