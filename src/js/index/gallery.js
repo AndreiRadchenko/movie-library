@@ -1,6 +1,7 @@
 import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import { createPagination } from '../index/pagination';
 import { genresArray } from '../moviedb/genres';
 
 spinnerPlay();
@@ -22,9 +23,9 @@ export const renderGallery = galleryArray => {
         release_date,
         id,
         vote_average,
-      }) => `<div class="film__card">
+      }) => `<div class="film__card" data-id=${id}>
         <a class="film__link link" href="" onclick="event.preventDefault()">
-          <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" data-id=${id} />
+          <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" data-id=${id} loading="lazy"/>
           <div class="film__info">
             <h3 class="film__title">
               ${original_title}
@@ -43,6 +44,7 @@ export const renderGallery = galleryArray => {
   //   filmGallery.insertAdjacentHTML('beforeend', result);
   // filmGallery.insertAdjacentHTML('beforeend', result);
   filmGallery.innerHTML = result;
+  createPagination(movieService.page, movieService.total_pages);
 };
 
 filmGallery.addEventListener('click', renderModalDetail);

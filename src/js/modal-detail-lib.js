@@ -18,8 +18,12 @@ const refs = {
 };
 
 export function renderModalDetail({ target }) {
+  if (target.classList.contains('gallery')) {
+    return;
+  }
   spinnerPlay();
-  const id = target.getAttribute('data-id');
+  const filmCard = target.closest('[data-id]');
+  const id = filmCard.getAttribute('data-id');
   this.id = '';
   movieService
     .getFilmsById(id)
@@ -201,7 +205,7 @@ async function onButtonQueueClick({ target: buttonQueue }) {
       cloudStorage.currentlyOpenedFilm.filmData.id
     );
     buttonQueue.dataset.action = ADD;
-    buttonQueue.textContent = 'Add to watched';
+    buttonQueue.textContent = 'Add to queue';
     buttonQueue.classList.remove('button-active');
   }
   // modalContainer.click();

@@ -16,9 +16,9 @@ export const renderGalleryLib = galleryArray => {
         release_date,
         id,
         vote_average,
-      }) => `<div class="film__card">
+      }) => `<div class="film__card" data-id=${id}>
             <a class="film__link link" href="" onclick="event.preventDefault()">
-            <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" data-id=${id} />
+            <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" loading="lazy" />
             <div class="film__info">
                 <h3 class="film__title">
                 ${original_title}
@@ -56,7 +56,15 @@ cloudStorage
         ' <h2>There are no films in "Watched" collection"</h2>';
     }
   })
-  .catch(error => console.log(error))
+  .catch(error => {
+    if (error.message === 'No_USER') {
+      refs.wachedBtn.classList.add('disabled');
+      refs.queueBtn.classList.add('disabled');
+      refs.filmGalleryLib.innerHTML =
+        ' <h2>Please login to viewe personal collections</h2>';
+      return;
+    }
+  })
   .finally(() => spinnerStop());
 
 // getArreyWatched = () => {
