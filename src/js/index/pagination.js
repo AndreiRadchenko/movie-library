@@ -122,7 +122,7 @@ export function createPagination(page, totalPage) {
 
 function onPaginationBtnClick(e) {
   document.body.scrollIntoView();
-  page = Number(e.dataset.page);
+  const page = Number(e.dataset.page);
 
   spinnerPlay();
   movieService
