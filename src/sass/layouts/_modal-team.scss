@@ -5,6 +5,8 @@
   z-index: 20;
   width: 100%;
   height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   opacity: 1;
   background: var(--backdrop-modal-color);
   //   overflow-y: scroll;
@@ -17,7 +19,6 @@
   }
 
   @media screen and (max-width: $tablet) {
-    padding-top: 93px;
     padding-left: 15px;
     padding-right: 15px;
     // overflow-y: scroll;
@@ -32,6 +33,7 @@
 .modal-team {
   position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
   //   overflow: hidden;
   padding: 40px 12px;
   background: var(--bg-modal-color);
@@ -40,6 +42,7 @@
   width: 300px;
   max-width: 528px;
   max-height: 100%;
+  // margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 30px 20px 30px 20px;
@@ -60,15 +63,14 @@
   }
 
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-    margin: auto;
-    width: 628px;
-    height: 628px;
-    padding: 30px;
+    width: 728px;
+    // height: 828px;
+    padding: 5px;
   }
   @media screen and (min-width: $desktop) {
     min-width: 900px;
     height: 700px;
-    padding: 30px;
+    padding: 5px;
   }
 }
 
@@ -124,10 +126,10 @@
 
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     line-height: 1.16;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     @media screen and (min-width: $desktop) {
       margin-top: 10px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       font-size: 28px;
     }
   }
@@ -167,7 +169,7 @@
   margin-right: 15px;
   margin-bottom: 15px;
 
-  width: calc((100% - 20px * 1) / 2);
+  width: calc((100% - 25px * 1) / 2);
 
   @media screen and (max-width: $to-tablet) {
     &:first-child {
