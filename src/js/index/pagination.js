@@ -2,8 +2,8 @@ import movieService from '../moviedb/moviedb';
 
 paginationBox = document.querySelector('.pagination');
 
-const page = movieService.page;
-const totalPage = movieService.total;
+let page = movieService.page;
+const totalPage = 1000;
 console.log(totalPage);
 console.log(movieService.total);
 console.log(page);
@@ -136,17 +136,20 @@ function paginationСreate(page, totalPage) {
   paginationBox.innerHTML = paginationMarkUp;
 }
 
-function onPaginationBtnClick(e, callback) {
+function onPaginationBtnClick(e) {
   if (!e?.dataset?.page) return;
   window.scrollTo({
     top: 0,
     left: 0,
   });
-  callback(Number(e.dataset.page));
+  console.log(typeof(e.dataset.page))
+  page = Number(e.dataset.page);
+  console.log(typeof (page))
+  console.log(page);
 }
 
 paginationBox.addEventListener('click', e => {
-  onPaginationBtnClick(e.target, movieService.getFilmsPopular);
+  onPaginationBtnClick(e.target, movieService.getFilmsPopular(page));
 })
 
 paginationСreate(page, totalPage);
