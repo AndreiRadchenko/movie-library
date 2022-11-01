@@ -227,6 +227,9 @@ const modalDetailMarkup = ({
             src="https://image.tmdb.org/t/p/w500/${poster_path}"
             alt=""
           />
+               <div class="modal-detail__youtube" data-modal-youtube>
+      <i class="fa-brands fa-youtube"></i>
+    </div>
           </div>
            <div class="movie-data">
           <h2 class="data__title">${title}</h2>
