@@ -1,7 +1,8 @@
-import { renderModalDetail } from '../modal-detail';
+import { renderModalDetail } from '../modal-detail-lib';
 import refs from '../refs';
 import galleryArray from '../library/array.json';
 import cloudStorage from '../firebase/cloudstorage';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 export const renderGalleryLib = galleryArray => {
@@ -32,10 +33,9 @@ export const renderGalleryLib = galleryArray => {
         </div>`
     )
     .join('');
-
   refs.filmGalleryLib.innerHTML = result;
 };
-
+spinnerPlay();
 cloudStorage
   .getUserCollections()
   .then(films => {
@@ -56,7 +56,8 @@ cloudStorage
         ' <h2>There are no films in "Watched" collection"</h2>';
     }
   })
-  .catch(error => console.log(error));
+  .catch(error => console.log(error))
+  .finally(() => spinnerStop());
 
 // getArreyWatched = () => {
 //   // const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
@@ -91,4 +92,5 @@ cloudStorage
 
 refs.filmGalleryLib.addEventListener('click', renderModalDetail);
 
+export default renderGalleryLib;
 // refs.themeBtn.addEventListener('input', changeTheme);
