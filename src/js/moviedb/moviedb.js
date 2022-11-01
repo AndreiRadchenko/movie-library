@@ -72,7 +72,7 @@ class FetchMoviService {
 
   //https://api.themoviedb.org/3/search/movie?api_key=9673c8c8f98cb6e489d5cad6b3789836&language=en-US&query=www&page=1&include_adult=false
 
-  async getFilmsSearched(query = 'www', page = 1) {
+  async getFilmsSearched(query = '', page = 1) {
     const { searchParams, SEARCH_URL, RESPONSE_OK } = this;
     searchParams.page = page;
     searchParams.query = query;
