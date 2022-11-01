@@ -3,6 +3,9 @@ import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
+const ADD = 'add';
+const DELETE = 'delete';
+
 const refs = {
   body: document.querySelector('body'),
   showBackdrop: document.querySelector('[data-detail-modal]'),
@@ -10,6 +13,7 @@ const refs = {
   closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
   moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
+  modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
 };
 
 export function renderModalDetail({ target }) {
@@ -22,6 +26,7 @@ export function renderModalDetail({ target }) {
       refs.showBackdrop.classList.remove('is-hidden');
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
+      cloudStorage.currentlyOpenedFilm.filmData = data;
       (() => {
         const refs = {
           closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
@@ -29,19 +34,148 @@ export function renderModalDetail({ target }) {
           moviePoster: document.querySelector('.movie-poster'),
           movieInfo: document.querySelector('.movie-data'),
           buttonWatched: document.querySelector('.button-watched'),
+          buttonQueue: document.querySelector('.button-queue'),
         };
 
-        refs.closeModalBtn.addEventListener('click', toggleModal);
+        setButtonStyle({
+          buttonWatched: refs.buttonWatched,
+          buttonQueue: refs.buttonQueue,
+          id: data.id,
+        });
 
-        function toggleModal() {
-          refs.modalDetail.classList.toggle('is-hidden');
-        }
+        refs.closeModalBtn.addEventListener('click', closeModalDetail);
+        refs.buttonWatched.addEventListener('click', onButtonWatchedClick);
+        refs.buttonQueue.addEventListener('click', onButtonQueueClick);
       })();
     })
     .catch(error => console.log(error))
     .finally(() => {
+      document.body.classList.add('modal-open');
+      document.addEventListener('keydown', onModalDetailKeydown);
+      refs.modalDetailBackdrop.addEventListener(
+        'click',
+        onModalDetailBackdropClick
+      );
       spinnerStop();
     });
+}
+
+function closeModalDetail() {
+  refs.modalDetailBackdrop.classList.add('is-hidden');
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onModalDetailKeydown);
+  refs.modalDetailBackdrop.removeEventListener(
+    'click',
+    onModalDetailBackdropClick
+  );
+  console.log('in close modal-detail');
+}
+
+function onModalDetailKeydown(event) {
+  if (event.code === 'Escape') {
+    closeModalDetail();
+  }
+}
+
+function onModalDetailBackdropClick(event) {
+  if (event.target === refs.modalDetailBackdrop) {
+    closeModalDetail();
+  }
+}
+
+async function setButtonStyle({ buttonWatched, buttonQueue, id }) {
+  const tag = await cloudStorage.searchFilmInCollection(id);
+  if (tag === WATCHED) {
+    buttonWatched.textContent = 'Remove from watched';
+    buttonWatched.dataset.action = DELETE;
+    buttonWatched.classList.add('button-active');
+
+    buttonQueue.textContent = 'Add to queue';
+    buttonQueue.dataset.action = ADD;
+    buttonQueue.classList.remove('button-active');
+  } else if (tag === QUEUE) {
+    buttonWatched.textContent = 'Add to watched';
+    buttonWatched.dataset.action = ADD;
+    buttonWatched.classList.remove('button-active');
+
+    buttonQueue.textContent = 'Remove from queue';
+    buttonQueue.dataset.action = DELETE;
+    buttonQueue.classList.add('button-active');
+  } else {
+    buttonWatched.textContent = 'Add to watched';
+    buttonWatched.dataset.action = ADD;
+    buttonWatched.classList.remove('button-active');
+
+    buttonQueue.textContent = 'Add to queue';
+    buttonQueue.dataset.action = ADD;
+    buttonQueue.classList.remove('button-active');
+  }
+}
+
+async function onButtonWatchedClick({ target: buttonWatched }) {
+  const modalContainer = document.querySelector('.modal-detal__container');
+  const buttonQueue = document.querySelector('.button-queue');
+  const watchedBtnState = buttonWatched.dataset.action;
+  const queueBtnState = buttonQueue.dataset.action;
+  if (watchedBtnState === ADD && queueBtnState === ADD) {
+    cloudStorage.addFilmToCollection(WATCHED);
+    buttonWatched.dataset.action = DELETE;
+    buttonWatched.textContent = 'Remove from watched';
+    buttonWatched.classList.add('button-active');
+  } else if (watchedBtnState === ADD && queueBtnState === DELETE) {
+    await cloudStorage.deleteFilmFromCollection(
+      cloudStorage.currentlyOpenedFilm.filmData.id
+    );
+    await cloudStorage.addFilmToCollection(WATCHED);
+    buttonWatched.dataset.action = DELETE;
+    buttonWatched.textContent = 'Remove from watched';
+    buttonWatched.classList.add('button-active');
+
+    buttonQueue.textContent = 'Add to queue';
+    buttonQueue.dataset.action = ADD;
+    buttonQueue.classList.remove('button-active');
+  } else if (watchedBtnState === DELETE) {
+    await cloudStorage.deleteFilmFromCollection(
+      cloudStorage.currentlyOpenedFilm.filmData.id
+    );
+    buttonWatched.dataset.action = ADD;
+    buttonWatched.textContent = 'Add to watched';
+    buttonWatched.classList.remove('button-active');
+  }
+  // modalContainer.click();
+}
+
+async function onButtonQueueClick({ target: buttonQueue }) {
+  const modalContainer = document.querySelector('.modal-detal__container');
+  const buttonWatched = document.querySelector('.button-watched');
+  const watchedBtnState = buttonWatched.dataset.action;
+  const queueBtnState = buttonQueue.dataset.action;
+  if (queueBtnState === ADD && watchedBtnState === ADD) {
+    cloudStorage.addFilmToCollection(QUEUE);
+    buttonQueue.dataset.action = DELETE;
+    buttonQueue.textContent = 'Remove from queue';
+    buttonQueue.classList.add('button-active');
+  } else if (queueBtnState === ADD && watchedBtnState === DELETE) {
+    await cloudStorage.deleteFilmFromCollection(
+      cloudStorage.currentlyOpenedFilm.filmData.id
+    );
+    await cloudStorage.addFilmToCollection(QUEUE);
+    buttonQueue.dataset.action = DELETE;
+    buttonQueue.textContent = 'Remove from queue';
+    buttonQueue.classList.add('button-active');
+
+    buttonWatched.textContent = 'Add to watched';
+    buttonWatched.dataset.action = ADD;
+    buttonWatched.classList.remove('button-active');
+  } else if (queueBtnState === DELETE) {
+    await cloudStorage.deleteFilmFromCollection(
+      cloudStorage.currentlyOpenedFilm.filmData.id
+    );
+    buttonQueue.dataset.action = ADD;
+    buttonQueue.textContent = 'Add to watched';
+    buttonQueue.classList.remove('button-active');
+  }
+  // modalContainer.click();
 }
 
 const modalDetailMarkup = ({
@@ -99,13 +233,13 @@ const modalDetailMarkup = ({
           type="button"
           class="modal-detail__button button-watched"
           data-click="addToWached"
-          data-action="addById"
+          data-action="add"
         >
           Add to watched
         </button>
         <button
           type="button"
-          data-action="addById"
+          data-action="add"
           class="modal-detail__button button-queue"
           data-click="addToQueue"
         >
