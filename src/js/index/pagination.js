@@ -137,7 +137,6 @@ function paginationСreate(page, totalPage) {
 }
 
 function onPaginationBtnClick(e) {
-  if (!e?.dataset?.page) return;
   window.scrollTo({
     top: 0,
     left: 0,
