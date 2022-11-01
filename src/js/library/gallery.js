@@ -1,11 +1,12 @@
-import { renderModalDetail } from '../modal-detail';
+import { renderModalDetail } from '../modal-detail-lib';
 import refs from '../refs';
-// import galleryArray from "../library/array.json"
-
-export const filmGalleryLib = document.querySelector('.gallery-library');
+import galleryArray from '../library/array.json';
+import cloudStorage from '../firebase/cloudstorage';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
+const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 export const renderGalleryLib = galleryArray => {
-  filmGalleryLib.innerHTML = ' ';
+  refs.filmGalleryLib.innerHTML = ' ';
   const result = galleryArray
     .map(
       ({
@@ -32,30 +33,64 @@ export const renderGalleryLib = galleryArray => {
         </div>`
     )
     .join('');
-
-  filmGalleryLib.insertAdjacentHTML('beforeend', result);
+  refs.filmGalleryLib.innerHTML = result;
 };
+spinnerPlay();
+cloudStorage
+  .getUserCollections()
+  .then(films => {
+    const watchedFilms = films?.filter(film => film.tag === WATCHED);
+    // console.log(watchedFilms);
 
-getArreyWatched = () => {
-  const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
-  if (arreyWatched) {
-    const arrWatched = JSON.parse(arreyWatched);
-    renderGalleryLib(arrWatched);
-  }
-};
+    refs.wachedBtn.classList.add('library__btn--currenly');
+    refs.queueBtn.classList.remove('library__btn--currenly');
+    if (!watchedFilms) {
+      refs.filmGalleryLib.innerHTML =
+        ' <h2>Please login to viewe personal collections</h2>';
+      return;
+    }
+    if (watchedFilms.length) {
+      renderGalleryLib(watchedFilms);
+    } else {
+      refs.filmGalleryLib.innerHTML =
+        ' <h2>There are no films in "Watched" collection"</h2>';
+    }
+  })
+  .catch(error => console.log(error))
+  .finally(() => spinnerStop());
 
-getArreyQueue = () => {
-  const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
-  if (arreyQueue) {
-    const arrQueue = JSON.parse(arreyQueue);
-    renderGalleryLib(arrQueue);
-  }
-};
+// getArreyWatched = () => {
+//   // const arreyWatched = localStorage.getItem('wached'); //тут повинен приходити массив фільмів з localStorage ті що в переглянуті
+//   const arreyWatched = galleryArray.results;
+//   refs.wachedBtn.classList.toggle('library__btn--currenly');
+//   refs.queueBtn.classList.remove('library__btn--currenly');
+//   if (arreyWatched) {
+//     // const arrWatched = JSON.parse(arreyWatched);
+//     renderGalleryLib(arreyWatched);
+//   } else {
+//     refs.filmGalleryLib.innerHTML = ' ';
+//   }
+// };
 
-// filmGalleryLib.addEventListener('click', renderModalDetail);
+// getArreyQueue = () => {
+//   // const arreyQueue = localStorage.getItem('queue'); //тут повинен приходити массив фільмів з localStorage ті що в черзі
+//   const arreyQueue = galleryArray.results;
+//   refs.queueBtn.classList.toggle('library__btn--currenly');
+//   refs.wachedBtn.classList.remove('library__btn--currenly');
+//   if (arreyQueue) {
+//     // const arrQueue = JSON.parse(arreyQueue);
+//     renderGalleryLib(arreyQueue);
+//   } else {
+//     refs.filmGalleryLib.innerHTML = ' ';
+//   }
+// };
 
-// refs.wachedBtn.addEventListener('click', getArreyWatched);
+// changeTheme = () => {
+//   refs.body.classList.toggle('dark-theme');
+//   refs.filmGalleryLib.classList.toggle('dark-theme');
+// };
 
-// refs.queueBtn.addEventListener('click', getArreyQueue);
+refs.filmGalleryLib.addEventListener('click', renderModalDetail);
 
-// renderGalleryLib (getArreyQueue.results);
+export default renderGalleryLib;
+// refs.themeBtn.addEventListener('input', changeTheme);

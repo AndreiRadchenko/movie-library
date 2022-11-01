@@ -1,10 +1,15 @@
 import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import { genresArray } from '../moviedb/genres';
 
-movieService.getFilmsPopular().then(resolve => {
-  renderGallery(resolve.results);
-});
+spinnerPlay();
+movieService
+  .getFilmsPopular()
+  .then(resolve => {
+    renderGallery(resolve.results);
+  })
+  .finally(() => spinnerStop());
 
 export const filmGallery = document.querySelector('.gallery');
 export const renderGallery = galleryArray => {
@@ -35,7 +40,28 @@ export const renderGallery = galleryArray => {
     )
     .join('');
 
-  filmGallery.insertAdjacentHTML('beforeend', result);
+  //   filmGallery.insertAdjacentHTML('beforeend', result);
+  // filmGallery.insertAdjacentHTML('beforeend', result);
+  filmGallery.innerHTML = result;
 };
 
 filmGallery.addEventListener('click', renderModalDetail);
+
+// function receiveGenresNames(genre_id) {
+//   const genreName = genresArray.find(num => genre_id === num.id);
+//   if (genreName) {
+//     return genreName.name;
+//   } else {
+//     return 'Other';
+//   }
+// }
+
+// function receiveGenresArray(genre_id) {
+//   const genresArray = genreId.map(receiveGenresNames);
+
+//   if (genresArray.length <= 2) {
+//     return genresArray.join(', ');
+//   } else {
+//     return `${genresArray.slice(0, 2).join(', ')}, Other`;
+//   }
+// }

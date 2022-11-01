@@ -20,7 +20,9 @@ class FetchMoviService {
     // this.searchQuery = '';
     this.page = 1;
     this.total = 0;
-    this.fetchedImages = 0;
+    // this.total_pages = 0;
+    // this.fetchedImages = 0;
+    this.total_results = 0;
     this.query = '';
   }
 
@@ -28,6 +30,7 @@ class FetchMoviService {
   POPULAR_URL = `${this.BASE_URL}/trending/movie/day`;
   SEARCH_URL = `${this.BASE_URL}/search/movie`;
   MOVIE_ID_URL = `${this.BASE_URL}/movie/`;
+  VIDEOS = `/videos`;
   RESPONSE_OK = 200;
 
   searchParams = {
@@ -42,6 +45,7 @@ class FetchMoviService {
   async getFilmsPopular(page = 1) {
     const { searchParams, POPULAR_URL, RESPONSE_OK } = this;
     searchParams.page = page;
+
     const response = await axios.get(POPULAR_URL, {
       params: searchParams,
     });
@@ -49,6 +53,7 @@ class FetchMoviService {
       throw new Error(response.status);
     }
     this.total = response.data.total_pages;
+
     return response.data;
   }
 
@@ -82,6 +87,16 @@ class FetchMoviService {
 
   //https://api.themoviedb.org/3/movie/913290/videos?api_key=9673c8c8f98cb6e489d5cad6b3789836&language=en-US
 
+  async getMovieTrailer(id) {
+    const { searchParams, MOVIE_ID_URL, VIDEOS, RESPONSE_OK } = this;
+    const response = await axios.get(MOVIE_ID_URL + id + VIDEOS, {
+      params: searchParams,
+    });
+    if (response.status !== RESPONSE_OK) {
+      throw new Error(response.status);
+    }
+    return response.data;
+  }
   //
 
   incrementPage() {
@@ -92,6 +107,7 @@ class FetchMoviService {
     this.page = 1;
     this.fetchedImages = 0;
     this.total = 0;
+    this.total_results = 0;
   }
 
   get query() {
@@ -104,4 +120,5 @@ class FetchMoviService {
 }
 
 const movieService = new FetchMoviService();
+
 export default movieService;

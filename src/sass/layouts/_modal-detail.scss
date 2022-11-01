@@ -1,53 +1,54 @@
-.modal-detail {
+.modal-detail__backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-cubic) 400ms;
-  z-index: 5;
-}
-
-.modal-detail.is-open {
+  z-index: 50;
+  visibility: visible;
   opacity: 1;
-  pointer-events: initial;
+  overflow-y: scroll;
+  transition: opacity 250ms var(--timing-function),
+    visibility 250ms var(--timing-function);
+  &.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
-.modal-detail__backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+.modal-detail__backdrop.is-hidden .modal-detail__container {
+  transform: translate(-50%, -50%) scale(0);
 }
 
 .modal-detal__container {
-  z-index: 5;
+  z-index: 80;
   display: block;
+  margin: auto;
   position: relative;
   overflow-x: auto;
-  top: 2%;
-  margin: auto;
-  background-color: var(--background-color);
+  background-color: var(--bg-modal-color);
   max-height: 100vh;
-  width: 280px;
+  max-width: 280px;
+  top: 2%;
   padding: 48px 20px 41px 20px;
-  border: 1px solid black;
   @media screen and (min-width: $tablet) {
     min-width: 704px;
-    height: 552;
+    // height: 552px;
     display: flex;
     justify-content: space-between;
     padding: 40px 72px 40px 36px;
+    position: relative;
+    top: 108px;
   }
   @media screen and (min-width: $desktop) {
     min-width: 806px;
     height: 558;
     padding: 40px 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
   }
 }
 
@@ -60,7 +61,7 @@
     height: 373.55px;
   }
   @media screen and (min-width: $desktop) {
-    width: 375px;
+    width: 355px;
     height: 478px;
   }
 }
@@ -171,8 +172,7 @@
   color: var(--main-text-color);
   cursor: pointer;
   border: 1px solid var(--text-main-color);
-  transition: all var(--transition-cubic) 250ms;
-
+  @include customTransition(color, background-color, border-color);
   &:hover,
   &:focus {
     background-color: var(--accent-main-color);
@@ -185,6 +185,11 @@
   @media screen and (min-width: $desktop) {
     width: 136px;
   }
+}
+.button-active {
+  background-color: var(--accent-main-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--accent-main-color);
 }
 .modal-detail__button:first-child {
   @media screen and (min-width: $desktop) {
@@ -210,5 +215,26 @@
   @include customTransition(color);
   &:hover {
     color: var(--accent-main-color);
+  }
+}
+.movie-poster {
+  position: relative;
+}
+.modal-detail__youtube {
+  position: absolute;
+  font-size: 85px;
+  top: 45%;
+  left: 50%;
+  color: var(--accent-secondary-color);
+  fill: var(--background-color);
+  cursor: pointer;
+  transform: translateX(-50%) translateY(-50%) scale(1);
+  @include customTransition(color);
+}
+
+.movie-poster:hover {
+  cursor: pointer;
+  & .modal-detail__youtube {
+    transform: translateX(-50%) translateY(-50%) scale(1.15);
   }
 }
