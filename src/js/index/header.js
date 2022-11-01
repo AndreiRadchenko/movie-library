@@ -2,9 +2,9 @@ import movieService from '../moviedb/moviedb';
 import { renderGallery } from '../index/gallery';
 import { query } from 'firebase/firestore';
 
-//ця функція повинна визиватись по кліку на лупу і підставляти замість
-//'search query' рядок з інпута
-// movieService.getFilmsSearched('fight club').then(resolve => {
+// ця функція повинна визиватись по кліку на лупу і підставляти замість
+// 'search query' рядок з інпута
+// movieService.getFilmsSearched().then(resolve => {
 //   renderGallery(resolve.results);
 // });
 
