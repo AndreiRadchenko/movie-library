@@ -1,6 +1,7 @@
 import movieService from '../moviedb/moviedb';
+import refs from '../refs';
 
-paginationBox = document.querySelector('.pagination');
+
 
 let page = movieService.page;
 const totalPage = 1000;
@@ -20,7 +21,7 @@ console.log('total_pages', movieService.total);
 function paginationСreate(page, totalPage) {
 
   if (totalPage === 1) {
-    paginationBox.innerHTML = '';
+    refs.paginationBox.innerHTML = '';
     return;
   }
 
@@ -133,21 +134,18 @@ function paginationСreate(page, totalPage) {
       }
     }
   }
-  paginationBox.innerHTML = paginationMarkUp;
+  refs.paginationBox.innerHTML = paginationMarkUp;
 }
 
 function onPaginationBtnClick(e) {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-  });
+  document.body.scrollIntoView();
   console.log(typeof(e.dataset.page))
   page = Number(e.dataset.page);
   console.log(typeof (page))
   console.log(page);
 }
 
-paginationBox.addEventListener('click', e => {
+refs.paginationBox.addEventListener('click', e => {
   onPaginationBtnClick(e.target, movieService.getFilmsPopular(page));
 })
 

@@ -42,6 +42,11 @@ const refs = {
 
   filmGalleryLib: document.querySelector('.gallery-library'),
   body: document.querySelector('body'),
+
+
+  /* =============== references for paginatio and archont button ======================== */
+  paginationBox: document.querySelector('.pagianation'),
+  anchorBtn: document.querySelector('.anchorBtn'),
 };
 
 export default refs;
