@@ -1,6 +1,7 @@
-import movieService from '../js/moviedb/moviedb';
+import movieService from './moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
+import renderGalleryLib from '../js/library/gallery';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 const ADD = 'add';
@@ -24,7 +25,6 @@ export function renderModalDetail({ target }) {
     .getFilmsById(id)
     .then(data => {
       refs.showBackdrop.classList.remove('is-hidden');
-      document.body.classList.add('modal-open');
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
       cloudStorage.currentlyOpenedFilm.filmData = data;
@@ -69,7 +69,7 @@ function closeModalDetail() {
     'click',
     onModalDetailBackdropClick
   );
-  console.log('in close modal-detail');
+  refreshLibrary();
 }
 
 function onModalDetailKeydown(event) {
@@ -81,6 +81,34 @@ function onModalDetailKeydown(event) {
 function onModalDetailBackdropClick(event) {
   if (event.target === refs.modalDetailBackdrop) {
     closeModalDetail();
+  }
+}
+
+async function refreshLibrary() {
+  let currentLibrary;
+  try {
+    const btnWatchedCollection = document.querySelector('.js-btn-watched');
+    if (btnWatchedCollection.classList.contains('library__btn--currenly')) {
+      currentLibrary = WATCHED;
+    } else {
+      currentLibrary = QUEUE;
+    }
+    await cloudStorage
+      .getUserCollections()
+      .then(films => {
+        const filmsSorted = films?.filter(film => film.tag === currentLibrary);
+        //   console.log(watchedFilms);
+        if (filmsSorted.length) {
+          renderGalleryLib(filmsSorted);
+        } else {
+          refs.filmGalleryLib.innerHTML =
+            ' <h2>There are no films in "Watched" collection"</h2>';
+        }
+      })
+      .catch(error => console.log(error));
+  } catch (error) {
+    console.log('on main page');
+    return;
   }
 }
 
@@ -199,9 +227,6 @@ const modalDetailMarkup = ({
             src="https://image.tmdb.org/t/p/w500/${poster_path}"
             alt=""
           />
-          <div class="modal-detail__youtube" data-modal-youtube>
-      <i class="fa-brands fa-youtube"></i>
-    </div>
           </div>
            <div class="movie-data">
           <h2 class="data__title">${title}</h2>

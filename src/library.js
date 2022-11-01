@@ -8,7 +8,7 @@ import './js/library/gallery';
 import './js/index/footer';
 
 import './js/modal-login';
-import './js/modal-detail';
+// import './js/modal-detail-lib';
 import './js/button-up';
 import './js/modal-spinner';
 import './js/modal-trailer';
