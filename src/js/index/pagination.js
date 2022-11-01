@@ -24,7 +24,7 @@ export function createPagination(page, totalPage) {
     page != 1
       ? `<button type="button" class="pagination_button pagination_button-arrow" data-page="${
           page - 1
-        }""><i class="fa-solid fa-arrow-left"></i></button>`
+        }"><i class="fa-solid fa-arrow-left"></i></button>`
       : '';
 
   let rightBtn =
@@ -134,5 +134,8 @@ function onPaginationBtnClick(e) {
 }
 
 paginationBox.addEventListener('click', e => {
+  if (e.target.nodeName !== "BUTTON") {
+    return;
+  }
   onPaginationBtnClick(e.target);
 });
