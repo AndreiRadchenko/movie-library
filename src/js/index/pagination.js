@@ -1,25 +1,10 @@
 import movieService from '../moviedb/moviedb';
-import refs from '../refs';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import { renderGallery } from './gallery';
 
+const paginationBox = document.querySelector('.pagination');
 
-
-let page = movieService.page;
-const totalPage = 1000;
-console.log(totalPage);
-console.log(movieService.total);
-console.log(page);
-
-console.log(movieService);
-
-console.log('page', movieService.page);
-console.log('total_pages', movieService.total);
-console.log(movieService);
-
-console.log('page', movieService.page);
-console.log('total_pages', movieService.total);
-
-function paginationСreate(page, totalPage) {
-
+export function createPagination(page, totalPage) {
   if (totalPage === 1) {
     refs.paginationBox.innerHTML = '';
     return;
@@ -33,8 +18,7 @@ function paginationСreate(page, totalPage) {
   // document.documentElement.clientWidth
 
   let dataPage = '';
-  
-  
+
   //arrow buttons
   let leftBtn =
     page != 1
@@ -42,14 +26,14 @@ function paginationСreate(page, totalPage) {
           page - 1
         }""><i class="fa-solid fa-arrow-left"></i></button>`
       : '';
-  
+
   let rightBtn =
     page != totalPage
       ? `<button type="button" class="pagination_button pagination_button-arrow" data-page="${
           page + 1
         }"><i class="fa-solid fa-arrow-right"></i></button>`
       : '';
-  
+
   let firstBtn = `<button type="button" class="pagination_button" data-page="1">1</button>`;
   let lastBtn = `<button type="button" class="pagination_button" data-page="${totalPage}">${totalPage}</button>`;
   let pointBtn = `<button type="button" class="pagination_button pagination_button-points">...</button>`;
@@ -72,7 +56,6 @@ function paginationСreate(page, totalPage) {
   }
 
   if (pageWidth >= 768) {
-
     if (totalPage <= 9) {
       paginationMarkUp += leftBtn;
       for (let i = 1; i <= totalPage; i++) {
@@ -134,19 +117,22 @@ function paginationСreate(page, totalPage) {
       }
     }
   }
-  refs.paginationBox.innerHTML = paginationMarkUp;
+  paginationBox.innerHTML = paginationMarkUp;
 }
 
 function onPaginationBtnClick(e) {
   document.body.scrollIntoView();
-  console.log(typeof(e.dataset.page))
   page = Number(e.dataset.page);
-  console.log(typeof (page))
-  console.log(page);
+
+  spinnerPlay();
+  movieService
+    .getFilmsPopular(page)
+    .then(resolve => {
+      renderGallery(resolve.results);
+    })
+    .finally(() => spinnerStop());
 }
 
-refs.paginationBox.addEventListener('click', e => {
-  onPaginationBtnClick(e.target, movieService.getFilmsPopular(page));
-})
-
-paginationСreate(page, totalPage);
+paginationBox.addEventListener('click', e => {
+  onPaginationBtnClick(e.target);
+});

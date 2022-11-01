@@ -81,7 +81,7 @@ class CloudStorage {
   async getUserCollections() {
     const user = localStorage.getItem('currentUser');
     if (!user) {
-      console.log('no user loged in');
+      // console.log('no user loged in');
       return;
     }
     const usersCollectionRef = collection(db, user);
@@ -120,7 +120,7 @@ class CloudStorage {
       const userDoc = doc(db, user, filmToDelete.docId);
       await deleteDoc(userDoc);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
