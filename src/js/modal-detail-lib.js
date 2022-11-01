@@ -201,7 +201,7 @@ async function onButtonQueueClick({ target: buttonQueue }) {
       cloudStorage.currentlyOpenedFilm.filmData.id
     );
     buttonQueue.dataset.action = ADD;
-    buttonQueue.textContent = 'Add to watched';
+    buttonQueue.textContent = 'Add to queue';
     buttonQueue.classList.remove('button-active');
   }
   // modalContainer.click();

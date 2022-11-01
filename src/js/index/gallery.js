@@ -1,6 +1,7 @@
 import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import { createPagination } from '../index/pagination';
 import { genresArray } from '../moviedb/genres';
 
 spinnerPlay();
@@ -43,6 +44,7 @@ export const renderGallery = galleryArray => {
   //   filmGallery.insertAdjacentHTML('beforeend', result);
   // filmGallery.insertAdjacentHTML('beforeend', result);
   filmGallery.innerHTML = result;
+  createPagination(movieService.page, movieService.total_pages);
 };
 
 filmGallery.addEventListener('click', renderModalDetail);

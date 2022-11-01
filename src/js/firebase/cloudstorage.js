@@ -65,7 +65,7 @@ class CloudStorage {
     const user = localStorage.getItem('currentUser');
     if (!user) {
       openModalLogin();
-      return;
+      throw new Error('No_USER');
     }
     const usersCollectionRef = collection(db, user);
     this.currentlyOpenedFilm.tag = tag;
@@ -81,8 +81,7 @@ class CloudStorage {
   async getUserCollections() {
     const user = localStorage.getItem('currentUser');
     if (!user) {
-      console.log('no user loged in');
-      return;
+      throw new Error('No_USER');
     }
     const usersCollectionRef = collection(db, user);
     const data = await getDocs(usersCollectionRef);
@@ -120,7 +119,7 @@ class CloudStorage {
       const userDoc = doc(db, user, filmToDelete.docId);
       await deleteDoc(userDoc);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
