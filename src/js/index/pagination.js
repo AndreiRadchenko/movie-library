@@ -12,7 +12,10 @@ console.log(movieService);
 
 console.log('page', movieService.page);
 console.log('total_pages', movieService.total);
+console.log(movieService);
 
+console.log('page', movieService.page);
+console.log('total_pages', movieService.total);
 
 function paginationСreate(page, totalPage) {
 
