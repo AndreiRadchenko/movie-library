@@ -40,6 +40,7 @@ const refs = {
 
   themeBtn: document.querySelector('#theme-switch-toggle'),
 
+  containerLib: document.querySelector('.container-library'),
   filmGalleryLib: document.querySelector('.gallery-library'),
   body: document.querySelector('body'),
 };

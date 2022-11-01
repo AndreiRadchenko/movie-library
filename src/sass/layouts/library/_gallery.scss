@@ -1,11 +1,11 @@
 .gallery-library {
-    min-height: calc(100vh - 216px - 77px - 20px);
+    min-height: calc(100vh - 230px - 78.5px);
 
     @media screen and (min-width: $tablet) {
-        min-height: calc(100vh - 219px - 79px - 15px);
+        min-height: calc(100vh - 230px - 78.5px);
     }
 
     @media screen and (max-width: $to-tablet) {
-        min-height: calc(100vh - 230px - 100px - 10px);
+        min-height: calc(100vh - 230px - 104.28px);
     }
 }
