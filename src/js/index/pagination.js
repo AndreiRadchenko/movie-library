@@ -3,6 +3,7 @@ import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { renderGallery } from './gallery';
 
 const paginationBox = document.querySelector('.pagination');
+const minWidth = 768;
 
 export function createPagination(page, totalPage) {
   if (totalPage === 0 || totalPage === 1) {
@@ -38,7 +39,7 @@ export function createPagination(page, totalPage) {
   let lastBtn = `<button type="button" class="pagination_button" data-page="${totalPage}">${totalPage}</button>`;
   let pointBtn = `<button type="button" class="pagination_button pagination_button-points">...</button>`;
 
-  if (pageWidth < 768) {
+  if (pageWidth < minWidth) {
     paginationMarkUp += leftBtn;
 
     for (let i = page - 2; i <= page + 2; i++) {
@@ -55,7 +56,7 @@ export function createPagination(page, totalPage) {
     paginationMarkUp += rightBtn;
   }
 
-  if (pageWidth >= 768) {
+  if (pageWidth >= minWidth) {
     if (totalPage <= 9) {
       paginationMarkUp += leftBtn;
       for (let i = 1; i <= totalPage; i++) {
