@@ -5,8 +5,8 @@ import { renderGallery } from './gallery';
 const paginationBox = document.querySelector('.pagination');
 
 export function createPagination(page, totalPage) {
-  if (totalPage === 1) {
-    refs.paginationBox.innerHTML = '';
+  if (totalPage === 0 || totalPage === 1) {
+    paginationBox.innerHTML = '';
     return;
   }
 
@@ -44,7 +44,7 @@ export function createPagination(page, totalPage) {
     for (let i = page - 2; i <= page + 2; i++) {
       dataPage = i;
 
-      if (i == page) {
+      if (i === page) {
         paginationMarkUp += `<button type="button" class="pagination_button pagination_button-active">${dataPage}</button>`;
         continue;
       }
@@ -61,7 +61,7 @@ export function createPagination(page, totalPage) {
       for (let i = 1; i <= totalPage; i++) {
         dataPage = i;
 
-        if (i == page) {
+        if (i === page) {
           paginationMarkUp += `<button type="button" class="pagination_button pagination_button-active">${dataPage}</button>`;
           continue;
         }
@@ -78,7 +78,7 @@ export function createPagination(page, totalPage) {
         for (let i = 1; i <= 7; i++) {
           dataPage = i;
 
-          if (i == page) {
+          if (i === page) {
             paginationMarkUp += `<button type="button" class="pagination_button pagination_button-active">${dataPage}</button>`;
             continue;
           }
@@ -93,7 +93,7 @@ export function createPagination(page, totalPage) {
 
         for (let i = totalPage - 6; i <= totalPage; i++) {
           dataPage = i;
-          if (i == page) {
+          if (i === page) {
             paginationMarkUp += `<button type="button" class="pagination_button pagination_button-active">${dataPage}</button>`;
             continue;
           }
@@ -107,7 +107,7 @@ export function createPagination(page, totalPage) {
 
         for (let i = page - 2; i <= page + 2; i++) {
           dataPage = i;
-          if (i == page) {
+          if (i === page) {
             paginationMarkUp += `<button type="button" class="pagination_button pagination_button-active">${dataPage}</button>`;
             continue;
           }
