@@ -1,0 +1,18 @@
+.anchorBtn {
+    height: 35px;
+    width: 35px;
+    background-color: var(--accent-main-color);
+    border-radius: 50%;
+    border: 0;
+
+    position: fixed;
+    right: 2em;
+    bottom: 2em;
+
+    z-index: 1;
+    transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover, &:focus{
+        scale: 1.05;
+    }
+}

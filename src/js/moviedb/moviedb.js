@@ -17,13 +17,10 @@ import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 class FetchMoviService {
   constructor() {
-    // this.searchQuery = '';
-    this.page = 1;
-    this.total = 0;
-    // this.total_pages = 0;
-    // this.fetchedImages = 0;
-    this.total_results = 0;
     this.query = '';
+    this.page = 1;
+    this.total_pages = 0;
+    this.total_results = 0;
   }
 
   BASE_URL = 'https://api.themoviedb.org/3/';
@@ -52,7 +49,9 @@ class FetchMoviService {
     if (response.status !== RESPONSE_OK) {
       throw new Error(response.status);
     }
-    this.total = response.data.total_pages;
+    this.page = response.data.page;
+    this.total_pages = response.data.total_pages;
+    this.total_results = response.data.total_results;
 
     return response.data;
   }
@@ -82,6 +81,10 @@ class FetchMoviService {
     if (response.status !== RESPONSE_OK) {
       throw new Error(response.status);
     }
+    this.page = response.data.page;
+    this.total_pages = response.data.total_pages;
+    this.total_results = response.data.total_results;
+
     return response.data;
   }
 
@@ -105,8 +108,7 @@ class FetchMoviService {
 
   resetPage() {
     this.page = 1;
-    this.fetchedImages = 0;
-    this.total = 0;
+    this.total_pages = 0;
     this.total_results = 0;
   }
 

@@ -1,0 +1,296 @@
+.modal-login__backdrop-team {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 65;
+  width: 100%;
+  height: 100%;
+  // padding-top: 10px;
+  // padding-bottom: 10px;
+  opacity: 1;
+  background: var(--backdrop-modal-color);
+  //   overflow-y: scroll;
+
+  @include customTransition(opacity);
+
+  &.is-hidden-team {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: $tablet) {
+    // padding-left: 15px;
+    // padding-right: 15px;
+    // overflow-y: scroll;
+  }
+
+  @media screen and (min-width: $tablet) {
+  }
+  @media screen and (min-width: $desktop) {
+  }
+}
+
+.modal-team {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // transform: translateY(100%);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  //   overflow: hidden;
+  // padding: 40px 12px;
+  background: var(--bg-modal-color);
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  width: 320px;
+  height: 90vh;
+  // max-width: 528px;
+  // max-height: 100%;
+  // margin-top: 20px;
+  // margin-left: auto;
+  // margin-right: auto;
+  padding: 30px 20px 30px 20px;
+  color: var(--text-main-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: scale(1);
+  @include customTransition(transform);
+
+  .modal-login__backdrop.is-hidden & {
+    transform: scale(1.1);
+  }
+  @media screen and (min-width: $tablet) {
+    width: 720px;
+    height: 680px;
+    overflow-y: hidden;
+    // width: 100%;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  // @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+  //   // width: 728px;
+  //   // height: 828px;
+  //   // padding: 5px;
+  // }
+  @media screen and (min-width: $desktop) {
+    // width: 840px;
+    // height: 740px;
+    // min-width: 900px;
+    // height: 700px;
+    // padding: 5px;
+  }
+}
+
+.modal__cross-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 14px;
+  top: 9px;
+  right: 9px;
+  width: 14px;
+  height: 14px;
+  // border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-main-color);
+  cursor: pointer;
+  @include customTransition(color);
+  &:hover {
+    color: var(--accent-main-color);
+  }
+}
+.ref__readme {
+  list-style: none;
+  color: var(--text-main-color);
+}
+// Title
+.title-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.logo-team {
+  display: flex;
+  justify-content: center;
+}
+
+.team__title {
+  font-size: 20px;
+  &:hover {
+    color: var(--accent-main-color);
+  }
+
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    line-height: 1.16;
+    margin-bottom: 10px;
+    @media screen and (min-width: $desktop) {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+  }
+}
+.under {
+  color: var(--accent-main-color);
+  &:hover {
+    color: var(--text-main-color);
+  }
+}
+.goitLogo {
+  height: 24px;
+  width: 65px;
+  margin-right: 10px;
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    height: 23px;
+    width: 65px;
+    margin-right: 15px;
+  }
+  @media screen and (min-width: $desktop) {
+    height: 24px;
+    width: 80px;
+    margin-right: 15px;
+  }
+}
+
+// Member's card
+.team__content {
+  text-align: center;
+}
+.team__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+.team__item {
+  border-radius: 0px 0px 4px 4px;
+  // margin-right: 15px;
+  // margin-bottom: 15px;
+
+  width: calc((100% - 25px * 1) / 2);
+  // width: 60px;
+
+  @media screen and (max-width: $to-tablet) {
+    &:first-child {
+      text-align: center;
+    }
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &:nth-last-child(-n + 2) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 130px;
+    &:first-child {
+      text-align: center;
+    }
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &:nth-last-child(-n + 2) {
+      margin-bottom: 0;
+    }
+  }
+  @media screen and (min-width: $desktop) {
+    // margin-left: auto;
+    // width: calc((100% - 5px * 4) / 5);
+    // &:not(:nth-child(4n)) {
+    //   margin-right: 20px;
+    // }
+    // &:last-child {
+    //   margin-right: 49px;
+    // }
+    // margin-bottom: 30px;
+  }
+  // margin-right: auto;
+}
+.image__scale {
+  display: inline-block;
+  overflow: hidden;
+}
+.team__image {
+  margin: auto;
+  min-width: 100px;
+  border-radius: 60px;
+  margin-bottom: 5px;
+  transition: 1s;
+  &:hover {
+    transform: scale(1.1);
+  }
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    margin-bottom: 10px;
+    // min-width: 140px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 20px;
+    // min-width: 150px;
+  }
+}
+.team__subtitle {
+  font-weight: 400px;
+  font-size: 14px;
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    margin-bottom: 15px;
+    font-size: 21px;
+    line-height: 1;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.15px;
+  }
+}
+
+.team__text {
+  color: var(--accent-main-color);
+  line-height: 1.12;
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    margin-bottom: 15px;
+    font-size: 17px;
+    line-height: 1.15px;
+  }
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.1px;
+  }
+}
+
+.social__icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+
+  @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
+    width: 30px;
+    height: 30px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 30px;
+    height: 30px;
+  }
+}

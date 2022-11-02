@@ -1,9 +1,8 @@
-import movieService from '../js/moviedb/moviedb';
+import movieService from './moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
+import renderGalleryLib from '../js/library/gallery';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
-
-import { openModalTrailer, closeModalTrailer } from './modal-trailer';
 
 const ADD = 'add';
 const DELETE = 'delete';
@@ -30,7 +29,6 @@ export function renderModalDetail({ target }) {
     .getFilmsById(id)
     .then(data => {
       refs.showBackdrop.classList.remove('is-hidden');
-      document.body.classList.add('modal-open');
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
       cloudStorage.currentlyOpenedFilm.filmData = data;
@@ -53,7 +51,6 @@ export function renderModalDetail({ target }) {
         refs.closeModalBtn.addEventListener('click', closeModalDetail);
         refs.buttonWatched.addEventListener('click', onButtonWatchedClick);
         refs.buttonQueue.addEventListener('click', onButtonQueueClick);
-        refs.moviePoster.addEventListener('click', openModalTrailer);
       })();
     })
     .catch(error => console.log(error))
@@ -68,14 +65,6 @@ export function renderModalDetail({ target }) {
     });
 }
 
-// function onMoviePosterClick() {
-//   refs.modalTrailerBackdrop.classList.remove('is-hidden');
-// }
-
-// function onModalTrailerCloseBtnClick() {
-//   refs.modalTrailerBackdrop.classList.add('is-hidden');
-// }
-
 function closeModalDetail() {
   refs.modalDetailBackdrop.classList.add('is-hidden');
   document.body.classList.remove('modal-open');
@@ -84,6 +73,7 @@ function closeModalDetail() {
     'click',
     onModalDetailBackdropClick
   );
+  refreshLibrary();
 }
 
 function onModalDetailKeydown(event) {
@@ -95,6 +85,34 @@ function onModalDetailKeydown(event) {
 function onModalDetailBackdropClick(event) {
   if (event.target === refs.modalDetailBackdrop) {
     closeModalDetail();
+  }
+}
+
+async function refreshLibrary() {
+  let currentLibrary;
+  try {
+    const btnWatchedCollection = document.querySelector('.js-btn-watched');
+    if (btnWatchedCollection.classList.contains('library__btn--currenly')) {
+      currentLibrary = WATCHED;
+    } else {
+      currentLibrary = QUEUE;
+    }
+    await cloudStorage
+      .getUserCollections()
+      .then(films => {
+        const filmsSorted = films?.filter(film => film.tag === currentLibrary);
+        //   console.log(watchedFilms);
+        if (filmsSorted.length) {
+          renderGalleryLib(filmsSorted);
+        } else {
+          refs.filmGalleryLib.innerHTML =
+            ' <h2>There are no films in "Watched" collection"</h2>';
+        }
+      })
+      .catch(error => console.log(error));
+  } catch (error) {
+    console.log('on main page');
+    return;
   }
 }
 
@@ -133,12 +151,10 @@ async function onButtonWatchedClick({ target: buttonWatched }) {
   const watchedBtnState = buttonWatched.dataset.action;
   const queueBtnState = buttonQueue.dataset.action;
   if (watchedBtnState === ADD && queueBtnState === ADD) {
-    try {
-      await cloudStorage.addFilmToCollection(WATCHED);
-      buttonWatched.dataset.action = DELETE;
-      buttonWatched.textContent = 'Remove from watched';
-      buttonWatched.classList.add('button-active');
-    } catch (error) {}
+    cloudStorage.addFilmToCollection(WATCHED);
+    buttonWatched.dataset.action = DELETE;
+    buttonWatched.textContent = 'Remove from watched';
+    buttonWatched.classList.add('button-active');
   } else if (watchedBtnState === ADD && queueBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
@@ -168,26 +184,22 @@ async function onButtonQueueClick({ target: buttonQueue }) {
   const watchedBtnState = buttonWatched.dataset.action;
   const queueBtnState = buttonQueue.dataset.action;
   if (queueBtnState === ADD && watchedBtnState === ADD) {
-    try {
-      await cloudStorage.addFilmToCollection(QUEUE);
-      buttonQueue.dataset.action = DELETE;
-      buttonQueue.textContent = 'Remove from queue';
-      buttonQueue.classList.add('button-active');
-    } catch (error) {}
+    cloudStorage.addFilmToCollection(QUEUE);
+    buttonQueue.dataset.action = DELETE;
+    buttonQueue.textContent = 'Remove from queue';
+    buttonQueue.classList.add('button-active');
   } else if (queueBtnState === ADD && watchedBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
     );
-    try {
-      await cloudStorage.addFilmToCollection(QUEUE);
-      buttonQueue.dataset.action = DELETE;
-      buttonQueue.textContent = 'Remove from queue';
-      buttonQueue.classList.add('button-active');
+    await cloudStorage.addFilmToCollection(QUEUE);
+    buttonQueue.dataset.action = DELETE;
+    buttonQueue.textContent = 'Remove from queue';
+    buttonQueue.classList.add('button-active');
 
-      buttonWatched.textContent = 'Add to watched';
-      buttonWatched.dataset.action = ADD;
-      buttonWatched.classList.remove('button-active');
-    } catch (error) {}
+    buttonWatched.textContent = 'Add to watched';
+    buttonWatched.dataset.action = ADD;
+    buttonWatched.classList.remove('button-active');
   } else if (queueBtnState === DELETE) {
     await cloudStorage.deleteFilmFromCollection(
       cloudStorage.currentlyOpenedFilm.filmData.id
@@ -219,7 +231,7 @@ const modalDetailMarkup = ({
             src="https://image.tmdb.org/t/p/w500/${poster_path}"
             alt=""
           />
-          <div class="modal-detail__youtube" data-modal-youtube>
+               <div class="modal-detail__youtube" data-modal-youtube>
       <i class="fa-brands fa-youtube"></i>
     </div>
           </div>

@@ -1,0 +1,58 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pagination_button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3333;
+  color: var(--text-main-color);
+  text-align: center;
+  background-color: var(--secondary-color);
+
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-background-color);
+  }
+
+  &-active {
+    background-color: var(--accent-main-color);
+    cursor: default;
+    color: var(--secondary-color);
+
+    &:hover,
+    &:focus {
+      background-color: var(--accent-main-color);
+    }
+  }
+
+  &-arrow {
+    background-color: var(--secondary-background-color);
+    &:hover,
+    &:focus {
+      background-color: var(--accent-main-color);
+    }
+  }
+
+  &-points {
+    cursor: default;
+
+    &:hover,
+    &:focus {
+      background-color: inherit;
+    }
+  }
+}
