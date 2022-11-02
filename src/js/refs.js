@@ -47,10 +47,7 @@ const refs = {
 
   /* ========= ferences for button dark and light theme =========== */
 
-  themeBtn: document.querySelector('#theme-switch-toggle'),
-
   filmGalleryLib: document.querySelector('.gallery-library'),
-  body: document.querySelector('body'),
 
   /* =============== references for paginatio and archont button ======================== */
   // paginationBox: document.querySelector('.pagianation'),
