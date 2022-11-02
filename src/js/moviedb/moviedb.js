@@ -35,6 +35,7 @@ class FetchMoviService {
     language: 'en-US',
     include_adult: 'false', // safesearch: 'true',
     page: 1,
+    query: '',
   };
 
   //https://api.themoviedb.org/3/trending/movie/day?api_key=9673c8c8f98cb6e489d5cad6b3789836&page=2

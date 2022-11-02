@@ -124,6 +124,8 @@ function onPaginationBtnClick(e) {
   document.body.scrollIntoView();
   const page = Number(e.dataset.page);
 
+  console.log(movieService);
+
   if (movieService.searchParams.query === '') {
     spinnerPlay();
     movieService
