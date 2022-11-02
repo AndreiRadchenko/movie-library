@@ -24,7 +24,7 @@ export function createPagination(page, totalPage) {
     page != 1
       ? `<button type="button" class="pagination_button pagination_button-arrow" data-page="${
           page - 1
-        }""><i class="fa-solid fa-arrow-left"></i></button>`
+        }"><i class="fa-solid fa-arrow-left"></i></button>`
       : '';
 
   let rightBtn =
@@ -122,17 +122,30 @@ export function createPagination(page, totalPage) {
 
 function onPaginationBtnClick(e) {
   document.body.scrollIntoView();
-  page = Number(e.dataset.page);
+  const page = Number(e.dataset.page);
 
-  spinnerPlay();
-  movieService
-    .getFilmsPopular(page)
-    .then(resolve => {
-      renderGallery(resolve.results);
-    })
-    .finally(() => spinnerStop());
+  if (movieService.searchParams.query === '') {
+    spinnerPlay();
+    movieService
+      .getFilmsPopular(page)
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
+  } else {
+    spinnerPlay();
+    movieService
+      .getFilmsSearched(movieService.searchParams.query, page)
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
+  }
 }
 
 paginationBox.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
   onPaginationBtnClick(e.target);
 });

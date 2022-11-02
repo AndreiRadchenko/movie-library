@@ -17,11 +17,6 @@ import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 class FetchMoviService {
   constructor() {
-    // this.searchQuery = '';
-    // this.total = 0;
-    // this.total_pages = 0;
-    // this.fetchedImages = 0;
-    // this.total_results = 0;
     this.query = '';
     this.page = 1;
     this.total_pages = 0;
@@ -40,6 +35,7 @@ class FetchMoviService {
     language: 'en-US',
     include_adult: 'false', // safesearch: 'true',
     page: 1,
+    query: '',
   };
 
   //https://api.themoviedb.org/3/trending/movie/day?api_key=9673c8c8f98cb6e489d5cad6b3789836&page=2
@@ -57,12 +53,6 @@ class FetchMoviService {
     this.page = response.data.page;
     this.total_pages = response.data.total_pages;
     this.total_results = response.data.total_results;
-
-    // console.log(response.data);
-
-    // console.log(
-    //   `page: ${this.page}, total_page: ${this.total_pages}, total_results: ${this.total_results}`
-    // );
 
     return response.data;
   }
@@ -82,7 +72,7 @@ class FetchMoviService {
 
   //https://api.themoviedb.org/3/search/movie?api_key=9673c8c8f98cb6e489d5cad6b3789836&language=en-US&query=www&page=1&include_adult=false
 
-  async getFilmsSearched(query = 'Ukraine', page = 1) {
+  async getFilmsSearched(query = '', page = 1) {
     const { searchParams, SEARCH_URL, RESPONSE_OK } = this;
     searchParams.page = page;
     searchParams.query = query;
@@ -95,12 +85,6 @@ class FetchMoviService {
     this.page = response.data.page;
     this.total_pages = response.data.total_pages;
     this.total_results = response.data.total_results;
-
-    // console.log(response.data);
-
-    // console.log(
-    //   `page: ${this.page}, total_page: ${this.total_pages}, total_results: ${this.total_results}`
-    // );
 
     return response.data;
   }

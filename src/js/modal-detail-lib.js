@@ -20,8 +20,12 @@ const refs = {
 };
 
 export function renderModalDetail({ target }) {
+  if (target.classList.contains('gallery')) {
+    return;
+  }
   spinnerPlay();
-  const id = target.getAttribute('data-id');
+  const filmCard = target.closest('[data-id]');
+  const id = filmCard.getAttribute('data-id');
   this.id = '';
   movieService
     .getFilmsById(id)

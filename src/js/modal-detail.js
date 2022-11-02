@@ -16,12 +16,18 @@ const refs = {
   moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
   modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
+  gallery: document.querySelector('.gallery'),
+  pagination: document.querySelector('.pagination'),
 };
 
 export function renderModalDetail({ target }) {
+  if (target.classList.contains('gallery')) {
+    return;
+  }
   spinnerPlay();
-  const id = target.getAttribute('data-id');
-  this.id = '';
+  const filmCard = target.closest('[data-id]');
+  const id = filmCard.getAttribute('data-id');
+
   movieService
     .getFilmsById(id)
     .then(data => {
