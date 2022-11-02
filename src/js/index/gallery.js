@@ -2,7 +2,8 @@ import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { createPagination } from '../index/pagination';
-import { genresArray } from '../moviedb/genres';
+import getGanreName from '../moviedb/genres';
+import poster from '../../images/gallery/file_not_found.jpg';
 
 spinnerPlay();
 movieService
@@ -23,47 +24,38 @@ export const renderGallery = galleryArray => {
         release_date,
         id,
         vote_average,
-      }) => `<div class="film__card" data-id=${id}>
+      }) => {
+        let genres = genre_ids.map(getGanreName);
+        if (genres.length > 2) {
+          genres = `${genres[0]}, ${genres[1]}, Other`;
+        }
+        let posterUrl;
+        if (!poster_path) {
+          posterUrl = poster;
+        } else {
+          posterUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+        }
+        return `<div class="film__card" data-id=${id}>
         <a class="film__link link" href="" onclick="event.preventDefault()">
-          <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" data-id=${id} loading="lazy"/>
+          <img class="film__img" src=${posterUrl} alt="" data-id=${id} loading="lazy"/>
           <div class="film__info">
             <h3 class="film__title">
               ${original_title}
             </h3>
             <div class="film__details">
-          <div class="film__genre">${genre_ids}</div>
+          <div class="film__genre">${genres}</div>
           <div class="film__year">${release_date.substr(0, 4)}</div>
           <div class="film__rating">${vote_average.toFixed(1)}</div>
           </div>
           </div>
         </a>
-      </div>`
+      </div>`;
+      }
     )
     .join('');
 
-  //   filmGallery.insertAdjacentHTML('beforeend', result);
-  // filmGallery.insertAdjacentHTML('beforeend', result);
   filmGallery.innerHTML = result;
   createPagination(movieService.page, movieService.total_pages);
 };
 
 filmGallery.addEventListener('click', renderModalDetail);
-
-// function receiveGenresNames(genre_id) {
-//   const genreName = genresArray.find(num => genre_id === num.id);
-//   if (genreName) {
-//     return genreName.name;
-//   } else {
-//     return 'Other';
-//   }
-// }
-
-// function receiveGenresArray(genre_id) {
-//   const genresArray = genreId.map(receiveGenresNames);
-
-//   if (genresArray.length <= 2) {
-//     return genresArray.join(', ');
-//   } else {
-//     return `${genresArray.slice(0, 2).join(', ')}, Other`;
-//   }
-// }
