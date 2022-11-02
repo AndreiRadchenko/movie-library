@@ -5,12 +5,19 @@ import refs from './refs';
 //   renderTrailer(resolve.results);
 // });
 
+// movieService.getMovieTrailer('49046').then(resolve => {
+//   renderTrailer(resolve.results);
+// });
+
 const modalTrailerBackdropRef = document.querySelector(
   '.modal-trailer__backdrop'
 );
-const modalTrailerCloseBtnRef = document.querySelector(
-  '[data-modal-tailer-close]'
-);
+// const closeModalTrailer = () => {
+//   modalTrailerBackdropRef.classList.add('is-hidden');
+// };
+// const modalTrailerCloseBtnRef = document.querySelector(
+//   '[data-modal-tailer-close]'
+// );
 
 export const openModalTrailer = () => {
   modalTrailerBackdropRef.classList.remove('is-hidden');
@@ -19,22 +26,24 @@ export const openModalTrailer = () => {
   //   //   document.addEventListener('keydown', onModalLoginKeydown);
 };
 
-const closeModalTrailer = () => {
+export const closeModalTrailer = () => {
   modalTrailerBackdropRef.classList.add('is-hidden');
-  //   // document.body.classList.remove('modal-open');
-  //   // document.removeEventListener('keydown', onModalLoginKeydown);
+  //   //   // document.body.classList.remove('modal-open');
+  //   //   // document.removeEventListener('keydown', onModalLoginKeydown);
 };
 
 const iframeContainerRef = document.querySelector('.modal-trailer');
 
-modalTrailerCloseBtnRef.addEventListener('click', closeModalTrailer);
+// modalTrailerCloseBtnRef.addEventListener('click', closeModalTrailer);
 
 // export const trailer = 'https://www.youtube.com/embed/upCeoeMVbYI';
 
 export const renderTrailer = (
   trailer = 'https://www.youtube.com/embed/upCeoeMVbYI'
 ) => {
-  const result = `<iframe
+  const result = `<div data-modal-tailer-close id="close_vid" class="modal-trailer__cross-frame">
+      <i class="fa-solid fa-xmark"></i>
+    </div><iframe
       class="modal__iframe"
       src="${trailer}"
       title="Smart Home. Kitchen"
@@ -42,5 +51,28 @@ export const renderTrailer = (
       allowfullscreen
     ></iframe>`;
 
-  iframeContainerRef.insertAdjacentHTML('beforeend', result);
+  const iframeContainerRef = document.querySelector('.modal-trailer');
+  iframeContainerRef.innerHTML = result;
+
+  const modalTrailerCloseBtnRef = document.querySelector(
+    '[data-modal-tailer-close]'
+  );
+  const closeModalTrailer = () => {
+    modalTrailerBackdropRef.classList.add('is-hidden');
+    //   // document.body.classList.remove('modal-open');
+    //   // document.removeEventListener('keydown', onModalLoginKeydown);
+  };
+  modalTrailerCloseBtnRef.addEventListener('click', closeModalTrailer);
+  const modalTrailerBackdropRef = document.querySelector(
+    '.modal-trailer__backdrop'
+  );
 };
+
+// $(document).on('click', '#close_vid', function () {
+//   jQuery('iframe').each(function () {
+//     jQuery(this)[0].contentWindow.postMessage(
+//       '{"event":"command","func":"pauseVideo","args":""}',
+//       '*'
+//     );
+//   });
+// });
