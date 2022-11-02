@@ -124,17 +124,27 @@ function onPaginationBtnClick(e) {
   document.body.scrollIntoView();
   const page = Number(e.dataset.page);
 
-  spinnerPlay();
-  movieService
-    .getFilmsPopular(page)
-    .then(resolve => {
-      renderGallery(resolve.results);
-    })
-    .finally(() => spinnerStop());
+  if (movieService.searchParams.query === '') {
+    spinnerPlay();
+    movieService
+      .getFilmsPopular(page)
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
+  } else {
+    spinnerPlay();
+    movieService
+      .getFilmsSearched(movieService.searchParams.query, page)
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
+  }
 }
 
 paginationBox.addEventListener('click', e => {
-  if (e.target.nodeName !== "BUTTON") {
+  if (e.target.nodeName !== 'BUTTON') {
     return;
   }
   onPaginationBtnClick(e.target);

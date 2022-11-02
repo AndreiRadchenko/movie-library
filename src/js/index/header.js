@@ -1,6 +1,6 @@
 import movieService from '../moviedb/moviedb';
 import { renderGallery } from '../index/gallery';
-import { query } from 'firebase/firestore';
+import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 // ця функція повинна визиватись по кліку на лупу і підставляти замість
 // 'search query' рядок з інпута
@@ -20,12 +20,22 @@ export function handleSubmit(event) {
   } = event.currentTarget;
   const query = searchQuery.value.trim().toLowerCase();
   if (!query) {
-    console.error('Ввдедіть дані для пошуку!!!');
-    return;
+    // console.error('Ввдедіть дані для пошуку!!!');
+    // return;
+    spinnerPlay();
+    movieService
+      .getFilmsPopular()
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
+  } else {
+    spinnerPlay();
+    movieService
+      .getFilmsSearched(query)
+      .then(resolve => {
+        renderGallery(resolve.results);
+      })
+      .finally(() => spinnerStop());
   }
-  movieService.getFilmsSearched.query = query;
-
-  movieService.getFilmsSearched(query).then(resolve => {
-    renderGallery(resolve.results);
-  });
 }
