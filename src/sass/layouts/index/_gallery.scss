@@ -1,5 +1,6 @@
 .gallery {
   width: 100%;
+  min-height: calc(100vh - 230px - 100px - 60px);
   position: relative;
   display: flex;
   justify-content: start;
@@ -11,11 +12,13 @@
     padding-top: 59px;
     padding-bottom: 61px;
     gap: 32px;
+    min-height: calc(100vh - 230px - 79px - 60px);
   }
   @media screen and (min-width: $desktop) {
     gap: 16px;
     padding-top: 60px;
     padding-bottom: 60px;
+    min-height: calc(100vh - 230px - 79px - 60px);
   }
 }
 
