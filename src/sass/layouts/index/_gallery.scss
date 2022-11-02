@@ -1,8 +1,9 @@
 .gallery {
   width: 100%;
+  min-height: calc(100vh - 230px - 124px);
   position: relative;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   background-color: var(--secondary-color);
   padding-top: 20px;
@@ -11,11 +12,13 @@
     padding-top: 59px;
     padding-bottom: 61px;
     gap: 32px;
+    min-height: calc(100vh - 230px - 99px);
   }
   @media screen and (min-width: $desktop) {
     gap: 16px;
     padding-top: 60px;
     padding-bottom: 60px;
+    min-height: calc(100vh - 230px - 99px);
   }
 }
 
