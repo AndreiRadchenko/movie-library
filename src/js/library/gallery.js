@@ -1,8 +1,6 @@
 import { renderModalDetail } from '../modal-detail-lib';
 import refs from '../refs';
-import cloudStorage from '../firebase/cloudstorage';
-import { spinnerPlay, spinnerStop } from '../modal-spinner';
-const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
+import { refreshLibrary } from '../modal-detail-lib';
 
 export const renderGalleryLib = galleryArray => {
   refs.filmGalleryLib.innerHTML = ' ';
@@ -34,37 +32,11 @@ export const renderGalleryLib = galleryArray => {
     .join('');
   refs.filmGalleryLib.innerHTML = result;
 };
-spinnerPlay();
-cloudStorage
-  .getUserCollections()
-  .then(films => {
-    const watchedFilms = films?.filter(film => film.tag === WATCHED);
-    // console.log(watchedFilms);
 
-    refs.wachedBtn.classList.add('library__btn--currenly');
-    refs.queueBtn.classList.remove('library__btn--currenly');
-    if (!watchedFilms) {
-      refs.filmGalleryLib.innerHTML =
-        ' <h2>Please login to view personal collections</h2>';
-      return;
-    }
-    if (watchedFilms.length) {
-      renderGalleryLib(watchedFilms);
-    } else {
-      refs.filmGalleryLib.innerHTML =
-        ' <h2>There are no films in "Watched" collection</h2>';
-    }
-  })
-  .catch(error => {
-    if (error.message === 'No_USER') {
-      refs.wachedBtn.classList.add('disabled');
-      refs.queueBtn.classList.add('disabled');
-      refs.filmGalleryLib.innerHTML =
-        ' <h2>Please login to view personal collections</h2>';
-      return;
-    }
-  })
-  .finally(() => spinnerStop());
+refs.wachedBtn.classList.add('library__btn--currenly');
+refs.queueBtn.classList.remove('library__btn--currenly');
+
+refreshLibrary();
 
 refs.filmGalleryLib.addEventListener('click', renderModalDetail);
 
