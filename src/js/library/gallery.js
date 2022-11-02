@@ -53,7 +53,7 @@ cloudStorage
       renderGalleryLib(watchedFilms);
     } else {
       refs.filmGalleryLib.innerHTML =
-        ' <h2>There are no films in "Watched" collection"</h2>';
+        ' <h2>There are no films in "Watched" collection</h2>';
     }
   })
   .catch(error => {

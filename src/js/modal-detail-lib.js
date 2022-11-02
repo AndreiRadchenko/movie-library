@@ -2,6 +2,7 @@ import movieService from './moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
 import renderGalleryLib from '../js/library/gallery';
+// import refs from '../js/refs';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 const ADD = 'add';
@@ -15,6 +16,7 @@ const refs = {
   moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
   modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
+  filmGalleryLib: document.querySelector('.gallery-library'),
 };
 
 export function renderModalDetail({ target }) {
@@ -102,7 +104,7 @@ async function refreshLibrary() {
           renderGalleryLib(filmsSorted);
         } else {
           refs.filmGalleryLib.innerHTML =
-            ' <h2>There are no films in "Watched" collection"</h2>';
+            ' <h2>There are no films in "Watched" collection</h2>';
         }
       })
       .catch(error => console.log(error));
