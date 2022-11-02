@@ -20,4 +20,6 @@ const genresArray = [
   { id: 37, name: 'Western' },
 ];
 
-// export default genresArray;
+const getGanreName = id => genresArray.find(e => e.id === id).name;
+
+export default getGanreName;

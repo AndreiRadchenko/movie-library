@@ -2,7 +2,7 @@ import movieService from '../moviedb/moviedb';
 import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { createPagination } from '../index/pagination';
-import { genresArray } from '../moviedb/genres';
+import getGanreName from '../moviedb/genres';
 
 spinnerPlay();
 movieService
@@ -23,7 +23,8 @@ export const renderGallery = galleryArray => {
         release_date,
         id,
         vote_average,
-      }) => `<div class="film__card" data-id=${id}>
+      }) => {
+        return `<div class="film__card" data-id=${id}>
         <a class="film__link link" href="" onclick="event.preventDefault()">
           <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" data-id=${id} loading="lazy"/>
           <div class="film__info">
@@ -37,7 +38,8 @@ export const renderGallery = galleryArray => {
           </div>
           </div>
         </a>
-      </div>`
+      </div>`;
+      }
     )
     .join('');
 
