@@ -3,6 +3,7 @@ import { renderModalDetail } from '../modal-detail';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { createPagination } from '../index/pagination';
 import getGanreName from '../moviedb/genres';
+import poster from '../../images/gallery/file_not_found.jpg';
 
 spinnerPlay();
 movieService
@@ -28,9 +29,15 @@ export const renderGallery = galleryArray => {
         if (genres.length > 2) {
           genres = `${genres[0]}, ${genres[1]}, Other`;
         }
+        let posterUrl;
+        if (!poster_path) {
+          posterUrl = poster;
+        } else {
+          posterUrl = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+        }
         return `<div class="film__card" data-id=${id}>
         <a class="film__link link" href="" onclick="event.preventDefault()">
-          <img class="film__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="" data-id=${id} loading="lazy"/>
+          <img class="film__img" src=${posterUrl} alt="" data-id=${id} loading="lazy"/>
           <div class="film__info">
             <h3 class="film__title">
               ${original_title}
