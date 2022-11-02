@@ -1,6 +1,5 @@
 import { renderModalDetail } from '../modal-detail-lib';
 import refs from '../refs';
-import galleryArray from '../library/array.json';
 import cloudStorage from '../firebase/cloudstorage';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
