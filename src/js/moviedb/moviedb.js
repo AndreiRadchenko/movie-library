@@ -57,7 +57,7 @@ class FetchMoviService {
     return response.data;
   }
 
-  //api.themoviedb.org/3/movie/913290?api_key=9673c8c8f98cb6e489d5cad6b3789836
+  //https://api.themoviedb.org/3/movie/913290?api_key=9673c8c8f98cb6e489d5cad6b3789836
 
   async getFilmsById(id) {
     const { searchParams, MOVIE_ID_URL, RESPONSE_OK } = this;
