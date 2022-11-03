@@ -20,9 +20,6 @@ import {
 import { updateUserRepresentation } from '../index/authenticate';
 import refs from '../refs';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-const UNKNOWN_PIC = 'images/unknown-ico.webp';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCRslPMi34g_BP9ji5GIJxC7E7VO81FLJA',
@@ -47,13 +44,9 @@ export function signInWithGoogle() {
       const email = result.user.email;
       const profilePic = result.user.photoURL;
 
-      //   localStorage.setItem('name', name);
       localStorage.setItem('currentUser', email);
       closeModalLogin();
       location.reload();
-      //   localStorage.setItem('profilePic', profilePic);
-
-      //   updateUserRepresentation();
     })
     .catch(error => {
       console.log(error);
@@ -81,11 +74,6 @@ export async function loginEmailPassword() {
   spinnerPlay();
   const loginEmail = refs.txtEmail.value;
   const loginPassword = refs.txtPassword.value;
-
-  // step 1: try doing this w/o error handling, and then add try/catch
-  // await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-
-  // step 2: add error handling
   try {
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     closeModalLogin();
@@ -102,17 +90,12 @@ export async function loginEmailPassword() {
 export async function monitorAuthState() {
   onAuthStateChanged(auth, user => {
     if (user) {
-      // console.log(user);
-      //   showApp();
       showLoginState(user);
       localStorage.setItem('currentUser', user.email);
 
       hideLoginError();
       updateUserRepresentation();
-      // hideLinkError();
     } else {
-      //   showLoginForm();
-      //   refs.lblAuthState.innerHTML = `You're not logged in.`;
       localStorage.removeItem('currentUser');
       updateUserRepresentation();
     }
@@ -123,7 +106,6 @@ export async function monitorAuthState() {
 export async function logout() {
   await signOut(auth);
   location.reload();
-  // localStorage.removeItem('currentUser');
 }
 
 monitorAuthState();

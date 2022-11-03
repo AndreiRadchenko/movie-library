@@ -5,28 +5,14 @@
   z-index: 65;
   width: 100%;
   height: 100%;
-  // padding-top: 10px;
-  // padding-bottom: 10px;
   opacity: 1;
   background: var(--backdrop-modal-color);
-  //   overflow-y: scroll;
 
   @include customTransition(opacity);
 
   &.is-hidden-team {
     opacity: 0;
     pointer-events: none;
-  }
-
-  @media screen and (max-width: $tablet) {
-    // padding-left: 15px;
-    // padding-right: 15px;
-    // overflow-y: scroll;
-  }
-
-  @media screen and (min-width: $tablet) {
-  }
-  @media screen and (min-width: $desktop) {
   }
 }
 
@@ -35,21 +21,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // transform: translateY(100%);
   overflow-y: scroll;
   overflow-x: hidden;
-  //   overflow: hidden;
-  // padding: 40px 12px;
   background: var(--bg-modal-color);
   font-family: Roboto, sans-serif;
   font-size: 12px;
   width: 320px;
   height: 90vh;
-  // max-width: 528px;
-  // max-height: 100%;
-  // margin-top: 20px;
-  // margin-left: auto;
-  // margin-right: auto;
   padding: 30px 20px 30px 20px;
   color: var(--text-main-color);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -65,22 +43,8 @@
     width: 720px;
     height: 680px;
     overflow-y: hidden;
-    // width: 100%;
-    // margin-left: auto;
-    // margin-right: auto;
   }
-
-  // @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
-  //   // width: 728px;
-  //   // height: 828px;
-  //   // padding: 5px;
-  // }
   @media screen and (min-width: $desktop) {
-    // width: 840px;
-    // height: 740px;
-    // min-width: 900px;
-    // height: 700px;
-    // padding: 5px;
   }
 }
 
@@ -94,7 +58,6 @@
   right: 9px;
   width: 14px;
   height: 14px;
-  // border: 1px solid rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 50%;
   color: var(--text-main-color);
@@ -178,12 +141,8 @@
 }
 .team__item {
   border-radius: 0px 0px 4px 4px;
-  // margin-right: 15px;
-  // margin-bottom: 15px;
 
   width: calc((100% - 25px * 1) / 2);
-  // width: 60px;
-
   @media screen and (max-width: $to-tablet) {
     &:first-child {
       text-align: center;
@@ -214,18 +173,6 @@
       margin-bottom: 0;
     }
   }
-  @media screen and (min-width: $desktop) {
-    // margin-left: auto;
-    // width: calc((100% - 5px * 4) / 5);
-    // &:not(:nth-child(4n)) {
-    //   margin-right: 20px;
-    // }
-    // &:last-child {
-    //   margin-right: 49px;
-    // }
-    // margin-bottom: 30px;
-  }
-  // margin-right: auto;
 }
 .image__scale {
   display: inline-block;
@@ -242,11 +189,9 @@
   }
   @media screen and (min-width: $tablet) and (max-width: $to-desktop) {
     margin-bottom: 10px;
-    // min-width: 140px;
   }
   @media screen and (min-width: $desktop) {
     margin-bottom: 20px;
-    // min-width: 150px;
   }
 }
 .team__subtitle {

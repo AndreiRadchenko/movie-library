@@ -75,8 +75,6 @@
     }
   }
   @media screen and (min-width: $desktop) {
-    // width: 360px;
-    // height: 450px;
     top: 50%;
     left: 50%;
     padding: 40px 36px;
@@ -97,7 +95,6 @@
   right: 9px;
   width: 14px;
   height: 14px;
-  // border: 1px solid rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 50%;
   color: var(--text-main-color);
@@ -230,12 +227,10 @@
   padding: 10px 10px 10px 5px;
   appearance: none;
   display: block;
-  // background: #fafafa;
   color: #ff0000;
   width: 100%;
   border: none;
   border-radius: 0;
-  // border-bottom: 1px solid var(--accent-secondary-color);
 }
 
 #divLoginError.modal-login__form__group {

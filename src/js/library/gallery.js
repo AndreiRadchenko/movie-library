@@ -55,4 +55,3 @@ refreshLibrary();
 refs.filmGalleryLib.addEventListener('click', renderModalDetail);
 
 export default renderGalleryLib;
-// refs.themeBtn.addEventListener('input', changeTheme);

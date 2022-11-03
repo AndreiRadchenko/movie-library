@@ -2,11 +2,6 @@ import movieService from '../moviedb/moviedb';
 import { renderGallery, filmGallery } from '../index/gallery';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// ця функція повинна визиватись по кліку на лупу і підставляти замість
-// 'search query' рядок з інпута
-// movieService.getFilmsSearched().then(resolve => {
-//   renderGallery(resolve.results);
-// });
 
 const form = document.querySelector('.form');
 
@@ -20,11 +15,6 @@ export function handleSubmit(event) {
   } = event.currentTarget;
   const query = searchQuery.value.trim().toLowerCase();
   if (query === '') {
-    // Notify.failure('Please enter the movie name!', {
-    //   position: 'center-top',
-    //   background: '#ff001b',
-    //   fontFamily: 'Roboto',
-    // });
     spinnerPlay();
     movieService
       .getFilmsPopular()
@@ -43,21 +33,9 @@ export function handleSubmit(event) {
             background: '#ff001b',
             fontFamily: 'Roboto',
           });
-          // movieService.getFilmsPopular().then(resolve => {
-          //   renderGallery(resolve.results);
-          // });
-          // filmGallery.innerHTML = '';
         }
         renderGallery(resolve.results);
       })
       .finally(() => spinnerStop());
   }
 }
-
-// if (resolve.results.length === 0) {
-//   spinnerPlay();
-//   emptyGllery.innerHTML = '<h2>No movies found for your search</h2>';
-//   paginationBox.innerHTML = '';
-//   spinnerStop();
-//   return;
-// }

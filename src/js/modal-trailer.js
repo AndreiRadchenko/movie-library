@@ -8,7 +8,6 @@ const iframeContainerRef = document.querySelector('.modal-trailer');
 export const openModalTrailer = () => {
   modalTrailerBackdropRef.classList.remove('is-hidden');
   renderTrailer();
-  // document.addEventListener('keydown', onModalTrailerKeydown);
   modalTrailerBackdropRef.addEventListener(
     'click',
     onModalTrailerBackdropClick
@@ -16,7 +15,6 @@ export const openModalTrailer = () => {
 };
 
 export const closeModalTrailer = () => {
-  // document.removeEventListener('keydown', onModalTrailerKeydown);
   modalTrailerBackdropRef.removeEventListener(
     'click',
     onModalTrailerBackdropClick
@@ -24,13 +22,6 @@ export const closeModalTrailer = () => {
   iframeContainerRef.innerHTML = '';
   modalTrailerBackdropRef.classList.add('is-hidden');
 };
-
-// function onModalTrailerKeydown(event) {
-//   console.log(event.code);
-//   if (event.code === 'Escape') {
-//     closeModalTrailer();
-//   }
-// }
 
 function onModalTrailerBackdropClick(event) {
   if (event.target === modalTrailerBackdropRef) {
@@ -62,12 +53,3 @@ export const renderTrailer = () => {
     '.modal-trailer__backdrop'
   );
 };
-
-// $(document).on('click', '#close_vid', function () {
-//   jQuery('iframe').each(function () {
-//     jQuery(this)[0].contentWindow.postMessage(
-//       '{"event":"command","func":"pauseVideo","args":""}',
-//       '*'
-//     );
-//   });
-// });

@@ -50,10 +50,7 @@
   justify-content: space-between;
   transform: scale(1);
   box-shadow: none;
-  // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-  //   0px 2px 1px rgba(0, 0, 0, 0.2);
   @include customTransition(transform, box-shadow);
-  // transition: transform 500ms;
 
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -77,9 +74,6 @@
   overflow: hidden;
   transform: scale(1.03);
   opacity: 1;
-  // transition: transform 500ms;
-  // box-shadow: 1px 4px 6px rgba(95, 2, 2, 0.716),
-  //   0px 4px 4px rgba(79, 3, 3, 0.486), 0px 1px 1px rgba(75, 3, 3, 0.503);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
 }
