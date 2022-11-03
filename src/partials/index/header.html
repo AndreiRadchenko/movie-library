@@ -2,7 +2,7 @@
   <div class="container header__container">
     <nav class="nav" id="index-header-navigation">
         <a class="logo-ref" href="index.html">
-            <svg class="logo__icon" role="img" aria-label="Логотип" width="24" height="24">
+            <svg class="logo__icon"  width="24" height="24">
                 <use href="/src/images/header/switch.svg#film"></use>
             </svg>
             <span class="logo-text">Filmoteka</span>
@@ -26,18 +26,18 @@
             name="searchQuery" 
             placeholder="Movie search" 
             />
-        <button 
-            class="form__btn btn" 
-            type="submit" 
-            aria-label="search films">
-            &#128269
+        <button class="form__btn btn" type="submit" aria-label="search films">
+            <svg class="form__icon"  width="24" height="24">
+              <use href="/src/images/header/switch.svg#search"></use>
+            </svg>
         </button>
       </div>
     </form>
 
+
     <div class="toolbar">
         <!-- Разметка переключателя темы -->
-        <!-- <div class="theme-switch">
+        <div class="theme-switch">
           <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
             <use href="/src/images/header/switch.svg#sun"></use>
           </svg>
@@ -53,6 +53,8 @@
           <svg class="theme-switch__icon" aria-label="Иконка луны">
             <use href="/src/images/header/switch.svg#moon"></use>
           </svg>
-        </div> -->
+        </div>
       </div>
 
+</div>
+</header>

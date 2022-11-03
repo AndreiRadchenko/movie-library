@@ -63,9 +63,21 @@
   align-items: flex-end;
   position: relative;
 }
-
-.logo-btn {
-  --animate-duration: 1.25s;
+.logo-ref {
+  text-decoration: none;
+}
+.logo__icon {
+  stroke: var(--secondary-color);
+  animation: tada;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  &:hover, &:active {
+    stroke: var(--accent-secondary-color);
+    transition: 3s;
+    transform: scale(1.2);
+     animation-play-state: paused;
+  
+}
 }
 
 .logo-text {
@@ -74,6 +86,10 @@
   color: var(--secondary-color);
   font-size: 30px;
   line-height: calc(35 / 30);
+  &:hover {
+    transition: 3s;
+    color: var(--accent-secondary-color);
+  }
 
   @media screen and (max-width: 767px) {
     display: none;
@@ -109,6 +125,8 @@
 }
 
 .nav__btn {
+  padding-top: 10px;
+    padding-bottom: 10px;
   transform: scale(1);
   transition: transform linear 250ms;
 }
@@ -166,6 +184,10 @@
   border-left: 0;
   border-bottom: 0.5px solid var(--secondary-color);
   outline: 0;
+    &:hover,
+    &:focus {
+      border-bottom: 0.5px solid var(--accent-secondary-color);
+  }
 }
 
 .form__input,
@@ -178,11 +200,12 @@
   line-height: calc(16 / 14);
 }
 
-.form__btn {
+.form__icon {
   position: absolute;
   right: 0;
+  top: -15px;
   height: 100%;
-
+  fill: white;
   transition: transform linear 200ms;
 
   &:hover {
@@ -192,29 +215,14 @@
 
 // -------Переключатель темы
 // ----------theme-switch----
-.light-theme {
-  background-color: var(--secondary-color);
-  color: var(--secondary-color);
-}
-
-.dark-theme {
-  background-color: var(--text-main-color);
-  color: var(--text-main-color);
-}
-
-.lightbox__content.dark-theme {
-  background-color: var(--text-main-color);
-}
-
 .toolbar {
   position: absolute;
-  top: -40px;
-  right: 5px;
+  left: 5px;
+  bottom: -40px;
   padding: 12px 12px;
   z-index: 0;
 }
 
-/* THEME SWITCH */
 .theme-switch {
   display: flex;
   align-items: center;
@@ -223,8 +231,8 @@
 
 .theme-switch__icon {
   fill: var(--secondary-color);
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   margin-right: 8px;
   margin-left: 8px;
 }
@@ -280,7 +288,7 @@
 }
 
 .theme-switch__toggle:checked + .theme-switch__track {
-  background-color: var(--bg-modal-color);
+  background-color:black;
 }
 
 .theme-switch__toggle:checked ~ .theme-switch__marker {
@@ -292,3 +300,62 @@
   box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
+
+
+// ===================================================
+
+body.light-theme {
+  background-color: var(--secondary-color);
+  color: #333333;
+}
+
+body.dark-theme {
+  background-color: #333333;
+  color: var(--secondary-color);
+
+  .film-title,
+  .pagination_button,
+  .close-btn, 
+  .modal-login,
+  .login-with-google-btn,
+  .modal-login__input,
+  .modal-login__button,
+  .h2-central {
+    background-color: #333333;
+    color: var(--secondary-color);
+  }
+
+  .pagination_button {
+    &:hover,
+    &:focus {
+      color: var(--accent-main-color); 
+    }
+  }
+
+
+  .modal-detal__container, .gallery-library {
+    background-color: #333333;
+  }
+
+  .modal-detail__button, .modal-login__button {
+    background-color: #333333;
+    color: white;
+
+    .button-watched,.modal-login__button  {
+      background-color: var(--accent-main-color);
+      color: var(--secondary-color);
+
+      &:hover,
+      &:focus {
+        background-color: white;
+        color: black;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: var(--accent-main-color);
+      color: var(--secondary-color);
+    }
+  }
+}
