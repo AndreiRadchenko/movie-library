@@ -14,7 +14,6 @@ const refs = {
   showBackdrop: document.querySelector('[data-detail-modal]'),
   modalDetail: document.querySelector('.modal-detal__container'),
   closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
-  moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
   modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
   gallery: document.querySelector('.gallery'),
@@ -37,6 +36,7 @@ export function renderModalDetail({ target }) {
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
       cloudStorage.currentlyOpenedFilm.filmData = data;
+
       (() => {
         const refs = {
           closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
@@ -45,6 +45,7 @@ export function renderModalDetail({ target }) {
           movieInfo: document.querySelector('.movie-data'),
           buttonWatched: document.querySelector('.button-watched'),
           buttonQueue: document.querySelector('.button-queue'),
+          youTubeBtn: document.querySelector('.modal-detail__youtube'),
         };
 
         setButtonStyle({
@@ -53,10 +54,14 @@ export function renderModalDetail({ target }) {
           id: data.id,
         });
 
+        setYouTubeBtn({
+          moviePoster: refs.moviePoster,
+          youTubeBtn: refs.youTubeBtn,
+        });
+
         refs.closeModalBtn.addEventListener('click', closeModalDetail);
         refs.buttonWatched.addEventListener('click', onButtonWatchedClick);
         refs.buttonQueue.addEventListener('click', onButtonQueueClick);
-        refs.moviePoster.addEventListener('click', openModalTrailer);
       })();
     })
     .catch(error => console.log(error))
@@ -71,13 +76,23 @@ export function renderModalDetail({ target }) {
     });
 }
 
-// function onMoviePosterClick() {
-//   refs.modalTrailerBackdrop.classList.remove('is-hidden');
-// }
+async function findMovieTrailer() {
+  const id = cloudStorage.currentlyOpenedFilm.filmData.id;
+  const videos = await movieService.getMovieTrailer(id);
+  const trailer = videos.results.find(e => e.type === 'Trailer');
+  return trailer?.key;
+}
 
-// function onModalTrailerCloseBtnClick() {
-//   refs.modalTrailerBackdrop.classList.add('is-hidden');
-// }
+async function setYouTubeBtn({ moviePoster, youTubeBtn }) {
+  const movieTrailerKey = await findMovieTrailer();
+  if (movieTrailerKey) {
+    moviePoster.addEventListener('click', openModalTrailer);
+    youTubeBtn.classList.remove('visually-hidden');
+    moviePoster.style.cursor = 'pointer';
+    cloudStorage.currentlyOpenedFilm.movieTrailerKey = movieTrailerKey;
+  } else {
+  }
+}
 
 function closeModalDetail() {
   refs.modalDetailBackdrop.classList.add('is-hidden');
@@ -89,7 +104,7 @@ function closeModalDetail() {
   );
 }
 
-function onModalDetailKeydown(event) {
+export function onModalDetailKeydown(event) {
   if (event.code === 'Escape') {
     closeModalDetail();
   }
@@ -226,7 +241,7 @@ const modalDetailMarkup = ({
             }"
             alt=""
           />
-          <div class="modal-detail__youtube" data-modal-youtube>
+          <div class="modal-detail__youtube visually-hidden" data-modal-youtube>
       <i class="fa-brands fa-youtube"></i>
     </div>
           </div>
