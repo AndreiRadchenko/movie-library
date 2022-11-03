@@ -20,6 +20,7 @@ import {
 import { updateUserRepresentation } from '../index/authenticate';
 import refs from '../refs';
 import { spinnerPlay, spinnerStop } from '../modal-spinner';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UNKNOWN_PIC = 'images/unknown-ico.webp';
 
@@ -49,7 +50,7 @@ export function signInWithGoogle() {
       //   localStorage.setItem('name', name);
       localStorage.setItem('currentUser', email);
       closeModalLogin();
-      // location.reload();
+      location.reload();
       //   localStorage.setItem('profilePic', profilePic);
 
       //   updateUserRepresentation();
@@ -88,11 +89,11 @@ export async function loginEmailPassword() {
   try {
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     closeModalLogin();
+    location.reload();
   } catch (error) {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
   } finally {
-    // location.reload();
     spinnerStop();
   }
 }

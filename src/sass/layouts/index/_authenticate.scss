@@ -7,6 +7,22 @@
 
 .auth__text {
   color: var(--secondary-color);
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--accent-secondary-color);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform linear 350ms, opacity linear 250ms;
+  }
+  &:hover::after {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 .auth__login {
   cursor: pointer;
