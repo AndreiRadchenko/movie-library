@@ -4,7 +4,7 @@
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
-  background-color: var(--secondary-color);
+  // background-color: var(--secondary-color);
   padding-top: 20px;
   padding-bottom: 40px;
   @media screen and (min-width: $tablet) {
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color: var(--secondary-color);
+  // background-color: var(--secondary-color);
   border-radius: 5px;
   width: 320px;
   @media screen and (min-width: $tablet) {
