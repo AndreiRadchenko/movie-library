@@ -2,6 +2,7 @@ import movieService from './moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
 import renderGalleryLib from '../js/library/gallery';
+// import refs from '../js/refs';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 const ADD = 'add';
@@ -15,6 +16,9 @@ const refs = {
   moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
   modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
+  filmGalleryLib: document.querySelector('.gallery-library'),
+  wachedBtn: document.querySelector('.js-btn-watched'),
+  queueBtn: document.querySelector('.js-btn-queue'),
 };
 
 export function renderModalDetail({ target }) {
@@ -88,14 +92,16 @@ function onModalDetailBackdropClick(event) {
   }
 }
 
-async function refreshLibrary() {
+export async function refreshLibrary() {
   let currentLibrary;
+  console.log('in refreshLibrary()');
+  spinnerPlay();
   try {
     const btnWatchedCollection = document.querySelector('.js-btn-watched');
     if (btnWatchedCollection.classList.contains('library__btn--currenly')) {
-      currentLibrary = WATCHED;
+      currentLibrary = cloudStorage.tags.WATCHED;
     } else {
-      currentLibrary = QUEUE;
+      currentLibrary = cloudStorage.tags.QUEUE;
     }
     await cloudStorage
       .getUserCollections()
@@ -105,14 +111,23 @@ async function refreshLibrary() {
         if (filmsSorted.length) {
           renderGalleryLib(filmsSorted);
         } else {
-          refs.filmGalleryLib.innerHTML =
-            ' <h2>There are no films in "Watched" collection"</h2>';
+          refs.filmGalleryLib.innerHTML = ` <h2 class = "h2-central">There are no films in "${currentLibrary}" collection</h2>`;
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.message === 'No_USER') {
+          refs.wachedBtn.classList.add('disabled');
+          refs.queueBtn.classList.add('disabled');
+          refs.filmGalleryLib.innerHTML =
+            ' <h2 class = "h2-central">Please login to view personal collections</h2>';
+        } else {
+          console.log(error);
+        }
+      });
   } catch (error) {
-    console.log('on main page');
-    return;
+    console.log(error);
+  } finally {
+    spinnerStop();
   }
 }
 

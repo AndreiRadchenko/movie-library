@@ -49,7 +49,7 @@ export function signInWithGoogle() {
       //   localStorage.setItem('name', name);
       localStorage.setItem('currentUser', email);
       closeModalLogin();
-      location.reload();
+      // location.reload();
       //   localStorage.setItem('profilePic', profilePic);
 
       //   updateUserRepresentation();
@@ -92,7 +92,7 @@ export async function loginEmailPassword() {
     console.log(`There was an error: ${error}`);
     showLoginError(error);
   } finally {
-    location.reload();
+    // location.reload();
     spinnerStop();
   }
 }

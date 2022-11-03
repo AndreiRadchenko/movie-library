@@ -1,5 +1,6 @@
 .gallery {
   width: 100%;
+  min-height: calc(100vh - 230px - 20px - 104px);
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -11,6 +12,7 @@
     padding-top: 59px;
     padding-bottom: 61px;
     gap: 32px;
+    min-height: calc(100vh - 230px - 20px - 79px);
   }
   @media screen and (min-width: $desktop) {
     gap: 16px;
