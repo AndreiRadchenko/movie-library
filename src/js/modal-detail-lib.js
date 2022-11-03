@@ -2,6 +2,7 @@ import movieService from './moviedb/moviedb';
 import { spinnerPlay, spinnerStop } from './modal-spinner';
 import cloudStorage from './firebase/cloudstorage';
 import renderGalleryLib from '../js/library/gallery';
+import { openModalTrailer, closeModalTrailer } from './modal-trailer';
 // import refs from '../js/refs';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
@@ -33,9 +34,11 @@ export function renderModalDetail({ target }) {
     .getFilmsById(id)
     .then(data => {
       refs.showBackdrop.classList.remove('is-hidden');
+      document.body.classList.add('modal-open');
       const markup = modalDetailMarkup(data);
       refs.modalDetail.innerHTML = markup;
       cloudStorage.currentlyOpenedFilm.filmData = data;
+
       (() => {
         const refs = {
           closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
@@ -44,12 +47,18 @@ export function renderModalDetail({ target }) {
           movieInfo: document.querySelector('.movie-data'),
           buttonWatched: document.querySelector('.button-watched'),
           buttonQueue: document.querySelector('.button-queue'),
+          youTubeBtn: document.querySelector('.modal-detail__youtube'),
         };
 
         setButtonStyle({
           buttonWatched: refs.buttonWatched,
           buttonQueue: refs.buttonQueue,
           id: data.id,
+        });
+
+        setYouTubeBtn({
+          moviePoster: refs.moviePoster,
+          youTubeBtn: refs.youTubeBtn,
         });
 
         refs.closeModalBtn.addEventListener('click', closeModalDetail);
@@ -67,6 +76,24 @@ export function renderModalDetail({ target }) {
       );
       spinnerStop();
     });
+}
+
+async function findMovieTrailer() {
+  const id = cloudStorage.currentlyOpenedFilm.filmData.id;
+  const videos = await movieService.getMovieTrailer(id);
+  const trailer = videos.results.find(e => e.type === 'Trailer');
+  return trailer?.key;
+}
+
+async function setYouTubeBtn({ moviePoster, youTubeBtn }) {
+  const movieTrailerKey = await findMovieTrailer();
+  if (movieTrailerKey) {
+    moviePoster.addEventListener('click', openModalTrailer);
+    youTubeBtn.classList.remove('visually-hidden');
+    moviePoster.style.cursor = 'pointer';
+    cloudStorage.currentlyOpenedFilm.movieTrailerKey = movieTrailerKey;
+  } else {
+  }
 }
 
 function closeModalDetail() {
@@ -94,7 +121,7 @@ function onModalDetailBackdropClick(event) {
 
 export async function refreshLibrary() {
   let currentLibrary;
-  console.log('in refreshLibrary()');
+  // console.log('in refreshLibrary()');
   spinnerPlay();
   try {
     const btnWatchedCollection = document.querySelector('.js-btn-watched');
