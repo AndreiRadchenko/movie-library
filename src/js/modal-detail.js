@@ -13,7 +13,6 @@ const refs = {
   showBackdrop: document.querySelector('[data-detail-modal]'),
   modalDetail: document.querySelector('.modal-detal__container'),
   closeModalBtn: document.querySelector('.modal-detail__cross-frame'),
-  // moviePoster: document.querySelector('.movie-poster'),
   movieInfo: document.querySelector('.movie-data'),
   modalDetailBackdrop: document.querySelector('.modal-detail__backdrop'),
   gallery: document.querySelector('.gallery'),
@@ -80,31 +79,19 @@ async function findMovieTrailer() {
   const id = cloudStorage.currentlyOpenedFilm.filmData.id;
   const videos = await movieService.getMovieTrailer(id);
   const trailer = videos.results.find(e => e.type === 'Trailer');
-  // console.log(trailer);
-  // console.log(trailer.key);
   return trailer?.key;
 }
 
 async function setYouTubeBtn({ moviePoster, youTubeBtn }) {
   const movieTrailerKey = await findMovieTrailer();
-  console.log(movieTrailerKey);
   if (movieTrailerKey) {
     moviePoster.addEventListener('click', openModalTrailer);
     youTubeBtn.classList.remove('visually-hidden');
     moviePoster.style.cursor = 'pointer';
     cloudStorage.currentlyOpenedFilm.movieTrailerKey = movieTrailerKey;
-    // console.log(cloudStorage.currentlyOpenedFilm.movieTrailerKey);
   } else {
   }
 }
-
-// function onMoviePosterClick() {
-//   refs.modalTrailerBackdrop.classList.remove('is-hidden');
-// }
-
-// function onModalTrailerCloseBtnClick() {
-//   refs.modalTrailerBackdrop.classList.add('is-hidden');
-// }
 
 function closeModalDetail() {
   refs.modalDetailBackdrop.classList.add('is-hidden');
@@ -116,7 +103,7 @@ function closeModalDetail() {
   );
 }
 
-function onModalDetailKeydown(event) {
+export function onModalDetailKeydown(event) {
   if (event.code === 'Escape') {
     closeModalDetail();
   }

@@ -1,49 +1,46 @@
-import movieService from './moviedb/moviedb';
 import cloudStorage from './firebase/cloudstorage';
-import refs from './refs';
-
-// movieService.getMovieTrailer(49046).then(resolve => {
-//   renderTrailer(resolve.results);
-// });
-
-// movieService.getMovieTrailer('49046').then(resolve => {
-//   renderTrailer(resolve.results);
-// });
 
 const modalTrailerBackdropRef = document.querySelector(
   '.modal-trailer__backdrop'
 );
-// const closeModalTrailer = () => {
-//   modalTrailerBackdropRef.classList.add('is-hidden');
-// };
-// const modalTrailerCloseBtnRef = document.querySelector(
-//   '[data-modal-tailer-close]'
-// );
+const iframeContainerRef = document.querySelector('.modal-trailer');
 
 export const openModalTrailer = () => {
   modalTrailerBackdropRef.classList.remove('is-hidden');
   renderTrailer();
-  //   //   document.body.classList.add('modal-open');
-  //   //   document.addEventListener('keydown', onModalLoginKeydown);
+  // document.addEventListener('keydown', onModalTrailerKeydown);
+  modalTrailerBackdropRef.addEventListener(
+    'click',
+    onModalTrailerBackdropClick
+  );
 };
 
 export const closeModalTrailer = () => {
+  // document.removeEventListener('keydown', onModalTrailerKeydown);
+  modalTrailerBackdropRef.removeEventListener(
+    'click',
+    onModalTrailerBackdropClick
+  );
+  iframeContainerRef.innerHTML = '';
   modalTrailerBackdropRef.classList.add('is-hidden');
-  //   //   // document.body.classList.remove('modal-open');
-  //   //   // document.removeEventListener('keydown', onModalLoginKeydown);
 };
 
-const iframeContainerRef = document.querySelector('.modal-trailer');
+// function onModalTrailerKeydown(event) {
+//   console.log(event.code);
+//   if (event.code === 'Escape') {
+//     closeModalTrailer();
+//   }
+// }
 
-// modalTrailerCloseBtnRef.addEventListener('click', closeModalTrailer);
-
-// export const trailer = 'https://www.youtube.com/embed/upCeoeMVbYI';
+function onModalTrailerBackdropClick(event) {
+  if (event.target === modalTrailerBackdropRef) {
+    closeModalTrailer();
+  }
+}
 
 export const renderTrailer = () => {
   const trailerKey = cloudStorage.currentlyOpenedFilm.movieTrailerKey;
-  // console.log(trailerKey);
   const trailer = `https://www.youtube.com/embed/${trailerKey}`;
-  console.log(trailer);
   const result = `<div data-modal-tailer-close id="close_vid" class="modal-trailer__cross-frame">
       <i class="fa-solid fa-xmark"></i>
     </div><iframe
@@ -60,11 +57,6 @@ export const renderTrailer = () => {
   const modalTrailerCloseBtnRef = document.querySelector(
     '[data-modal-tailer-close]'
   );
-  const closeModalTrailer = () => {
-    modalTrailerBackdropRef.classList.add('is-hidden');
-    //   // document.body.classList.remove('modal-open');
-    //   // document.removeEventListener('keydown', onModalLoginKeydown);
-  };
   modalTrailerCloseBtnRef.addEventListener('click', closeModalTrailer);
   const modalTrailerBackdropRef = document.querySelector(
     '.modal-trailer__backdrop'
