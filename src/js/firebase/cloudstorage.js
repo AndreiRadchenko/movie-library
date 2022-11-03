@@ -48,7 +48,11 @@ import { openModalLogin } from '../modal-login';
 
 class CloudStorage {
   constructor() {
-    this.currentlyOpenedFilm = { filmData: null, tag: 'Not_Added' };
+    this.currentlyOpenedFilm = {
+      filmData: null,
+      tag: 'Not_Added',
+      movieTrailerKey: undefined,
+    };
   }
 
   tags = {

@@ -1,4 +1,5 @@
 import movieService from './moviedb/moviedb';
+import cloudStorage from './firebase/cloudstorage';
 import refs from './refs';
 
 // movieService.getMovieTrailer(49046).then(resolve => {
@@ -38,9 +39,11 @@ const iframeContainerRef = document.querySelector('.modal-trailer');
 
 // export const trailer = 'https://www.youtube.com/embed/upCeoeMVbYI';
 
-export const renderTrailer = (
-  trailer = 'https://www.youtube.com/embed/upCeoeMVbYI'
-) => {
+export const renderTrailer = () => {
+  const trailerKey = cloudStorage.currentlyOpenedFilm.movieTrailerKey;
+  // console.log(trailerKey);
+  const trailer = `https://www.youtube.com/embed/${trailerKey}`;
+  console.log(trailer);
   const result = `<div data-modal-tailer-close id="close_vid" class="modal-trailer__cross-frame">
       <i class="fa-solid fa-xmark"></i>
     </div><iframe
