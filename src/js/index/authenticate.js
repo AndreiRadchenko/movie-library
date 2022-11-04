@@ -33,14 +33,11 @@ function onAuthLoginClick(event) {
 }
 
 function onAuthLogoutClick(event) {
-  // console.log('logout');
   logout();
-  // refs.btnLibraryHome.click();
 }
 
 export function updateUserRepresentation() {
   const userEmail = localStorage.getItem('currentUser');
-  // console.log('userEmail: ', userEmail);
   if (!userEmail) {
     refs.authUserEmail.textContent = 'you are not loged in';
     refs.authUnsigned.classList.remove('visually-hidden');
@@ -51,5 +48,3 @@ export function updateUserRepresentation() {
     refs.authSigned.classList.remove('visually-hidden');
   }
 }
-
-// monitorAuthState();

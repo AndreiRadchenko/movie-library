@@ -4,6 +4,7 @@ import cloudStorage from './firebase/cloudstorage';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
 
 import { openModalTrailer, closeModalTrailer } from './modal-trailer';
+import poster from '../images/gallery/file_not_found.jpg';
 
 const ADD = 'add';
 const DELETE = 'delete';
@@ -233,7 +234,11 @@ const modalDetailMarkup = ({
   <div class="movie-poster">
   <img
             class="movie-image" data-id="${id}"
-            src="https://image.tmdb.org/t/p/w500/${poster_path}"
+            src = "${
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                : poster
+            }"
             alt=""
           />
           <div class="modal-detail__youtube visually-hidden" data-modal-youtube>

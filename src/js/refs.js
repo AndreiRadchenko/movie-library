@@ -5,7 +5,6 @@ const refs = {
   modalLogin: document.querySelector('.modal-login'),
 
   btnSigninWithGoogle: document.querySelector('#btnSigninWithGoogle'),
-  // btnLogout: document.querySelector('#btnLogout'),
 
   txtEmail: document.querySelector('#txtEmail'),
   txtPassword: document.querySelector('#txtPassword'),
@@ -50,7 +49,6 @@ const refs = {
   filmGalleryLib: document.querySelector('.gallery-library'),
 
   /* =============== references for paginatio and archont button ======================== */
-  // paginationBox: document.querySelector('.pagianation'),
   anchorBtn: document.querySelector('.anchorBtn'),
 };
 

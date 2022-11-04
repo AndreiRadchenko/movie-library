@@ -44,6 +44,7 @@ import {
   doc,
 } from 'firebase/firestore';
 import { openModalLogin } from '../modal-login';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { spinnerPlay, spinnerStop } from '../modal-spinner';
 
 class CloudStorage {
@@ -68,7 +69,8 @@ class CloudStorage {
   async addFilmToCollection(tag) {
     const user = localStorage.getItem('currentUser');
     if (!user) {
-      openModalLogin();
+      // openModalLogin();
+      Notify.info('Please login to get collection access ');
       throw new Error('No_USER');
     }
     const usersCollectionRef = collection(db, user);

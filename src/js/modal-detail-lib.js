@@ -5,6 +5,7 @@ import renderGalleryLib from '../js/library/gallery';
 import { openModalTrailer, closeModalTrailer } from './modal-trailer';
 // import refs from '../js/refs';
 const { WATCHED, QUEUE, NOT_ADDED } = cloudStorage.tags;
+import poster from '../images/gallery/file_not_found.jpg';
 
 const ADD = 'add';
 const DELETE = 'delete';
@@ -270,10 +271,14 @@ const modalDetailMarkup = ({
   <div class="movie-poster">
   <img
             class="movie-image" data-id="${id}"
-            src="https://image.tmdb.org/t/p/w500/${poster_path}"
+            src=${
+              poster_path
+                ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                : poster
+            }
             alt=""
           />
-               <div class="modal-detail__youtube" data-modal-youtube>
+               <div class="modal-detail__youtube visually-hidden" data-modal-youtube>
       <i class="fa-brands fa-youtube"></i>
     </div>
           </div>

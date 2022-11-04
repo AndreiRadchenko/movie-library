@@ -48,6 +48,9 @@
 .film__link {
   border-radius: 5px;
   justify-content: space-between;
+  transform: scale(1);
+  box-shadow: none;
+  @include customTransition(transform, box-shadow);
 
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -64,6 +67,15 @@
     min-height: 634px;
     width: calc((100% - 16px) / 3);
   }
+}
+
+.film__link:hover {
+  background-color: transparent;
+  overflow: hidden;
+  transform: scale(1.03);
+  opacity: 1;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .film__img {
@@ -149,15 +161,6 @@
     }
   }
 
-  .film__link:hover {
-    background-color: transparent;
-    overflow: hidden;
-    transform: scale(1.05);
-    opacity: 1;
-    transition: transform 500ms;
-    box-shadow: 1px 4px 6px rgba(95, 2, 2, 0.716),
-      0px 4px 4px rgba(79, 3, 3, 0.486), 0px 1px 1px rgba(75, 3, 3, 0.503);
-  }
   .film__rating {
     @media screen and (min-width: $telephone) {
       color: var(--accent-main-color);
@@ -240,7 +243,7 @@
     padding-bottom: 61px;
   }
   @media screen and (min-width: $desktop) {
-    justify-content: center;
+    // justify-content: center;
     text-align: center;
     padding-top: 60px;
     padding-bottom: 60px;
