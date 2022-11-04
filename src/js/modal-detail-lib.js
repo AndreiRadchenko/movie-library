@@ -278,7 +278,7 @@ const modalDetailMarkup = ({
             }
             alt=""
           />
-               <div class="modal-detail__youtube" data-modal-youtube>
+               <div class="modal-detail__youtube visually-hidden" data-modal-youtube>
       <i class="fa-brands fa-youtube"></i>
     </div>
           </div>
